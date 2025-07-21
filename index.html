@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="author" content="SemiColonWeb">
+	<meta name="description"
+		content="Create App-Style Landing Websites with Canvas Template. Get Canvas to build powerful websites easily with the Highly Customizable &amp; Best Selling Bootstrap Template, today.">
+
+	<!-- Font Imports -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@400;700&family=Merriweather&display=swap"
+		rel="stylesheet">
+
+	<!-- Core Style -->
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Font Icons -->
+	<link rel="stylesheet" href="css/font-icons.css">
+	<link rel="stylesheet" href="one-page/css/et-line.css">
+
+	<!-- Plugins/Components CSS -->
+	<link rel="stylesheet" href="css/components/bs-switches.css">
+
+	<!-- Niche Demos -->
+	<link rel="stylesheet" href="one-page/app-landing.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/custom.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Document Title
+	============================================= -->
+	<title>App Landing | Canvas</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="transparent-header dark" data-sticky-class="not-dark"
+			data-responsive-class="not-dark" data-sticky-logo-height="80" data-sticky-menu-padding="29">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row justify-content-lg-between">
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo" class="col-auto order-lg-2 me-lg-0 px-0">
+							<a href="" class="mt-2 mb-2">
+								<img class="logo-default" src="images/logo-dark.png" alt="wapped Logo">
+							</a>
+						</div><!-- #logo end -->
+
+						<div class="primary-menu-trigger">
+							<button class="cnvs-hamburger" type="button" title="Open Mobile Menu">
+								<span class="cnvs-hamburger-box"><span class="cnvs-hamburger-inner"></span></span>
+							</button>
+						</div>
+
+						<!-- Primary Navigation
+						============================================= -->
+						<nav class="primary-menu with-arrows col-lg-5 order-lg-1 px-0">
+
+							<ul class="menu-container one-page-menu" data-easing="easeInOutExpo" data-speed="1250"
+								data-offset="160">
+								<li class="menu-item"><a class="menu-link" href="#" data-href="#slider">
+										<div>Precios</div>
+									</a></li>
+							</ul>
+
+						</nav>
+
+						<nav class="primary-menu col-lg-5 order-lg-3 px-0">
+
+							<ul class="menu-container justify-content-lg-end one-page-menu" data-easing="easeInOutExpo"
+								data-speed="1250" data-offset="160">
+								<li class="menu-item"><a class="menu-link" href="#" data-href="#section-faqs">
+										<div>Funcionalidades</div>
+									</a></li>
+								<li class="menu-item"><a class="menu-link" href="#" data-href="#section-faqs">
+										<div>Ver planes</div>
+									</a></li>
+							</ul>
+
+						</nav><!-- #primary-menu end -->
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header><!-- #header end -->
+
+		<section id="slider" class="slider-element slider-parallax min-vh-60 min-vh-md-100 include-header">
+			<div class="slider-inner">
+
+				<div class="vertical-middle slider-element-fade">
+					<div class="container dark py-5 py-md-0">
+						<div class="row d-flex align-items-center" style="min-height:100vh;">
+
+							<div class="col-lg-6 col-md-8 text-center">
+								<div class="emphasis-title">
+									<h1 class="font-body">Automatizamos tus pedidos. Digitalizamos tu menu. Agilizamos
+										tu negocio.</h1>
+								</div>
+								<a href="#" data-scrollto="#section-pricing" data-easing="easeInOutExpo"
+									data-speed="1250" data-offset="160"
+									class="button button-large button-white button-light text-capitalize"
+									style="border-radius: 23px;">Pedir una demo</a>
+								<a href="https://www.youtube.com/watch?v=M0rAydxQKYc" class="hero-action-link"
+									data-lightbox="iframe">
+									<i class="fa-solid fa-circle-play"></i> Ver video
+								</a>
+
+							</div>
+							<div class="col-lg-6 d-none d-lg-block text-center">
+								<div>
+									<img src="images/celular.png" alt="iPhone Image" class="cell-image"
+										data-animate="fadeInRight">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="video-wrap">
+						<div class="video-overlay" style="background: rgba(0,0,0,0.2);"></div>
+					</div>
+
+				</div>
+		</section>
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+
+				<!-- Modal -->
+				<div class="modal1 mfp-hide" id="modal-login">
+					<div class="block mx-auto" style="background-color: #FFF; max-width: 400px;">
+						<div style="padding: 50px;">
+							<h3 class="font-body">Login to your Account</h3>
+							<form action="#" method="post" class="row mb-0">
+								<div class="col-12 form-group">
+									<label class="font-body text-capitalize"
+										for="login-form-modal-username">Username:</label>
+									<input type="text" id="login-form-modal-username" name="login-form-modal-username"
+										value="" class="form-control">
+								</div>
+
+								<div class="col-12 form-group">
+									<label class="font-body text-capitalize"
+										for="login-form-modal-password">Password:</label>
+									<input type="password" id="login-form-modal-password"
+										name="login-form-modal-password" value="" class="form-control">
+								</div>
+
+								<div class="col-12 form-group">
+									<div class="d-flex justify-content-between">
+										<button class="button button-rounded m-0" id="login-form-modal-submit"
+											name="login-form-modal-submit" value="login">Login</button>
+										<a href="#">Forgot Password?</a>
+									</div>
+								</div>
+							</form>
+							<div class="line line-sm"></div>
+							<a href="#"
+								class="button rounded w-100 fw-normal text-center text-capitalize bg-facebook mx-0">Login
+								with Facebook</a>
+							<a href="#"
+								class="button rounded w-100 fw-normal text-center text-capitalize bg-google m-0">Login
+								with Google</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="container"
+					style="background: url('one-page/images/section/iphone-3d-bg.png') no-repeat left bottom; background-size: 100% auto;">
+
+					<div id="section-nextgen" class="page-section mb-6">
+						<div class="row">
+
+							<div class="col-lg-6 text-center">
+								<img src="images/image-app.png" alt="NextGen Framework" data-animate="fadeInLeft">
+							</div>
+
+							<div class="col-lg-6">
+								<div class="mt-6 d-none d-lg-block"></div>
+								<img src="images/wapped.png" alt="Image" class="d-block mb-4 icon-image">
+								<div class="emphasis-title mb-4">
+									<span class="before-heading">Gestioná tu negocio con</span>
+									<h2 style="font-size: 42px;" class="font-body ls-1 fw-normal">Un Menú Digital
+										Inteligente</h2>
+								</div>
+								<p style="color: #777;" class="lead">
+									Actualizá precios, agregá o quitá productos y recibí todos los pedidos directo en
+									WhatsApp.
+									Sin comisiones, sin costos ocultos, todo desde una plataforma simple y rápida.
+								</p>
+								<a href="#" class="section-more-link">Descubrí cómo funciona <i
+										class="uil uil-angle-right-b"></i></a>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="line"></div>
+					<div class="clear"></div>
+
+					<div id="section-stunning-graphics" class="page-section mt-5 mb-6">
+						<div class="row">
+
+							<div class="col-lg-6">
+								<div class="mt-6 d-none d-lg-block"></div>
+								<img src="one-page/images/section/section-2-icon.png" alt="Backoffice para restaurantes"
+									class="d-block mb-4">
+								<div class="emphasis-title mb-4">
+									<span class="before-heading">Control total en tus manos</span>
+									<h2 style="font-size: 42px;" class="font-body ls-1 fw-normal">Backoffice simple y
+										potente</h2>
+								</div>
+								<p style="color: #777;" class="lead">
+									Desde un panel intuitivo podés actualizar precios, agregar o quitar productos,
+									cambiar fotos y organizar tu menú en segundos.
+									Todo lo que hagas se refleja automáticamente en el menú online de tus clientes.
+								</p>
+								<a href="#" class="section-more-link">Conocé el panel de gestión <i
+										class="uil uil-angle-right-b"></i></a>
+							</div>
+
+							<div class="col-lg-6 text-center">
+								<img src="images/backoffice.png" alt="Gestión del menú digital"
+									data-animate="fadeInRight">
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="clear mb-5"></div>
+
+				<div class="container">
+
+					<div id="section-pricing" class="page-section p-0 m-0">
+
+						<div class="pricing-tenure-switcher row align-items-center justify-content-center mb-4"
+							data-container="#pricing-switch">
+							<span class="pts-switch pts-false col-auto">Mensual</span>
+							<div class="pts-switcher col-auto">
+								<div class="switch">
+									<input id="switch-toggle-pricing-tenure" class="switch-toggle switch-toggle-round"
+										type="checkbox">
+									<label for="switch-toggle-pricing-tenure" class="mb-0"></label>
+								</div>
+							</div>
+							<span class="pts-switch pts-true col-auto">Anual</span>
+						</div>
+
+						<div id="pricing-switch" class="pricing row col-mb-30 mb-5">
+
+							<div class="col-lg-4 col-md-6">
+								<div class="pricing-box text-center">
+									<div class="pricing-title text-uppercase">
+										<h3>Plan Básico</h3>
+									</div>
+									<div class="pricing-price">
+										<div class="pts-content pts-content-false"><span
+												class="price-unit">$</span>25.000<span class="price-tenure">por
+												mes</span>
+										</div>
+										<div class="pts-content pts-content-true"><span
+												class="price-unit">$</span>250.000<span class="price-tenure">por
+												año</span>
+										</div>
+									</div>
+									<div class="pricing-features border-0 bg-transparent">
+										<ul>
+											<li>Hasta <strong>10 productos</strong> en menú</li>
+											<li>Menú <strong>estático</strong></li>
+											<li>Soporte por WhatsApp, somos personas, no bots.</li>
+											<li>Carga de menú inicial con logo y colores personalizados.</li>
+											<li>URL personalizada para tu local.</li>
+											<li>Videotutoriales para que aprendas a usar la herramienta.</li>
+											<li>Sin comisiones ni costos ocultos</li>
+										</ul>
+									</div>
+									<div class="pricing-action">
+										<div class="pts-content pts-content-false">
+											<a href="https://wa.me/541131286452?text=Quiero%20más%20información%20sobre%20el%20plan%20basico"
+												target="_blank"
+												class="button button-large button-rounded text-capitalize ls-0"
+												style="border-radius: 23px;">
+												Lo quiero
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- PLAN INTERMEDIO -->
+							<div class="col-lg-4 col-md-6">
+								<div class="pricing-box text-center">
+									<div class="pricing-title text-uppercase">
+										<h3>Plan Profesional</h3>
+									</div>
+									<div class="pricing-price">
+										<div class="pts-content pts-content-false"><span
+												class="price-unit">$</span>35.000<span class="price-tenure">por
+												mes</span>
+										</div>
+										<div class="pts-content pts-content-true"><span
+												class="price-unit">$</span>350.000<span class="price-tenure">por
+												año</span>
+										</div>
+									</div>
+									<div class="pricing-features border-0 bg-transparent">
+										<ul>
+											<li>Hasta <strong>50 productos</strong> en menú</li>
+											<li>Menú <strong>administrable</strong> a través de aplicación</li>
+											<li>Soporte <strong> prioritario </strong> por WhatsApp, somos personas, no
+												bots.</li>
+											<li>Carga de menú inicial con logo y colores personalizados.</li>
+											<li>URL personalizada para tu local.</li>
+											<li>Videotutoriales para que aprendas a usar la herramienta.</li>
+											<li>Sin comisiones ni costos ocultos</li>
+										</ul>
+									</div>
+									<div class="pricing-action">
+										<div class="pts-content pts-content-false">
+											<a href="https://wa.me/541131286452?text=Quiero%20más%20información%20sobre%20el%20plan%profesional"
+												target="_blank"
+												class="button button-large button-rounded text-capitalize ls-0"
+												style="border-radius: 23px;">
+												Lo quiero
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- PLAN AVANZADO -->
+							<div class="col-lg-4 offset-lg-0 col-md-6 offset-md-3">
+								<div class="pricing-box text-center">
+									<div class="pricing-title text-uppercase">
+										<h3>Plan Business</h3>
+									</div>
+									<div class="pricing-price">
+										<div class="pts-content pts-content-false pts-content-true"><span
+												class="price-unit"></span>Consultar<span class="price-tenure"></span>
+										</div>
+									</div>
+									<div class="pricing-features border-0 bg-transparent">
+										<ul>
+											<li>Productos <strong>Ilimitados</strong> en menú</li>
+											<li><strong>Personalización</strong> a medida de tu negocio.</li>
+											<li>Soporte <strong> prioritario </strong> por WhatsApp. Somos personas, no
+												bots.</li>
+											<li>Backoffice para manejar tu menú</li>
+											<li>Videotutoriales para que aprendas a usar la herramienta.</li>
+											<li>Sin comisiones ni costos ocultos</li>
+										</ul>
+									</div>
+									<div class="pricing-action">
+										<div class="pts-content pts-content-false">
+											<a href="https://wa.me/541131286452?text=Quiero%20más%20información%20sobre%20el%20plan%20enterprise"
+												target="_blank"
+												class="button button-large button-rounded text-capitalize ls-0"
+												style="border-radius: 23px;">
+												Contactarme
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+						<!-- Modal -->
+						<div class="modal1 mfp-hide" id="modal-get-started">
+							<div class="block mx-auto" style="background-color: #FFF; max-width: 800px;">
+								<div class="form-widget p-5" data-loader="button">
+									<div class="form-result"></div>
+									<form action="#" id="get-started-form" method="post" class="mb-0">
+
+										<div class="row">
+											<div class="col-md-8">
+												<h3 class="font-body">Register for an Account</h3>
+											</div>
+											<div class="col-md-4">
+												<div id="modal-get-started-package"></div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6 form-group">
+												<label class="font-body text-capitalize"
+													for="get-started-form-username">Choose Username:</label>
+												<input type="text" id="get-started-form-username"
+													name="get-started-form-username" value=""
+													class="form-control required no-error-msg">
+											</div>
+
+											<div class="col-md-6 form-group">
+												<label class="font-body text-capitalize"
+													for="get-started-form-email">Your Email:</label>
+												<input type="email" id="get-started-form-email"
+													name="get-started-form-email" value=""
+													class="form-control required email no-error-msg">
+											</div>
+
+											<div class="w-100"></div>
+
+											<div class="col-md-6 form-group">
+												<label class="font-body text-capitalize"
+													for="get-started-form-password">Choose Password:</label>
+												<input type="password" id="get-started-form-password"
+													name="get-started-form-password" value=""
+													class="form-control required no-error-msg">
+											</div>
+
+											<div class="col-md-6 form-group">
+												<label class="font-body text-capitalize"
+													for="get-started-form-password">Retype Password:</label>
+												<input type="password" id="get-started-form-repassword"
+													name="get-started-form-repassword" value=""
+													class="form-control required no-error-msg">
+											</div>
+
+											<!-- Package Selector Hidden Input Value Setter -->
+											<input type="hidden" id="get-started-form-package"
+												name="get-started-form-package" value="Free">
+
+											<div class="col-12 form-group">
+												<label>
+													<input type="checkbox" id="get-started-form-agree"
+														name="get-started-form-agree" value="1"
+														style="position: relative; top: 2px; margin-right: 5px;"> I
+													Agree to the Terms &amp; Conditions
+												</label>
+											</div>
+
+											<div class="col-12 form-group">
+												<div class="d-flex justify-content-between">
+													<button class="button button-rounded m-0"
+														id="get-started-form-submit" name="get-started-form-submit"
+														value="login">Get Started</button>
+													<a href="#" data-scrollto="#section-pricing"
+														data-easing="easeInOutExpo" data-speed="1250" data-offset="160"
+														onClick="jQuery.magnificPopup.close();">Change Plan?</a>
+												</div>
+											</div>
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="clear"></div>
+
+
+				</div>
+
+				<div class="section mb-6"
+					style="background-color: #F8FAFB; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+
+					<div class="fslider testimonial testimonial-full text-center" data-animation="fade"
+						style="max-width: none;">
+						<div class="flexslider">
+							<div class="slider-wrap">
+								<div class="slide">
+									<div class="row mx-auto mw-xs">
+										<div class="col-12">
+											<img class="rounded-circle mx-auto w-auto mb-4"
+												src="images/testimonials/1.jpg" width="64" height="64"
+												alt="Customer Testimonails">
+											<h3 class="mb-4 font-secondary text-dark text-opacity-75"
+												style="line-height: 1.65;">Seamlessly conceptualize multimedia based web
+												services for optimal human capital. Collaboratively evisculate
+												e-business value.</h3>
+										</div>
+										<div class="d-flex align-items-center justify-content-center">
+											<div>
+												<h4 class="h6 mb-0 fw-medium">Siri Alexa</h4>
+												<small class="text-muted">Apple Inc.</small>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="slide">
+									<div class="row mx-auto mw-xs">
+										<div class="col-12">
+											<img class="rounded-circle mx-auto w-auto mb-4"
+												src="images/testimonials/1.jpg" width="64" height="64"
+												alt="Customer Testimonails">
+											<h3 class="mb-4 font-secondary text-dark text-opacity-75"
+												style="line-height: 1.65;">Seamlessly conceptualize multimedia based web
+												services for optimal human capital. Collaboratively evisculate
+												e-business value.</h3>
+										</div>
+										<div class="d-flex align-items-center justify-content-center">
+											<div>
+												<h4 class="h6 mb-0 fw-medium">Siri Alexa</h4>
+												<small class="text-muted">Apple Inc.</small>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="slide">
+									<div class="row mx-auto mw-xs">
+										<div class="col-12">
+											<img class="rounded-circle mx-auto w-auto mb-4"
+												src="images/testimonials/1.jpg" width="64" height="64"
+												alt="Customer Testimonails">
+											<h3 class="mb-4 font-secondary text-dark text-opacity-75"
+												style="line-height: 1.65;">Seamlessly conceptualize multimedia based web
+												services for optimal human capital. Collaboratively evisculate
+												e-business value.</h3>
+										</div>
+										<div class="d-flex align-items-center justify-content-center">
+											<div>
+												<h4 class="h6 mb-0 fw-medium">Siri Alexa</h4>
+												<small class="text-muted">Apple Inc.</small>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="clear"></div>
+				<!-- 
+				<div id="section-gallery" class="page-section p-0 m-0">
+
+					<div class="container mt-5 mb-6 text-center">
+
+						<h3 class="ls-1 fw-normal" style="font-size: 32px; margin-bottom: 10px;">App Screenshots</h3>
+						<p class="lead mx-auto" style="max-width: 600px">Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit. Id, repellendus quae fuga ad, beatae odit.</p>
+						<a href="#" class="button button-circle text-capitalize">Check All</a>
+
+					</div>
+
+					<div class="owl-carousel owl-carousel-full image-carousel carousel-widget mb-5" data-margin="20"
+						data-center="true" data-loop="false" data-nav="false" data-pagi="true" data-items-xs="2"
+						data-items-sm="2" data-items-md="4" data-items-lg="4" data-items-xl="6" data-stage-padding="30"
+						data-lightbox="gallery">
+
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-1.jpg"><img
+									src="one-page/images/gallery/img-1.jpg" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-2.jpg"><img
+									src="one-page/images/gallery/img-2.jpg" alt="Image 2"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-3.jpg"><img
+									src="one-page/images/gallery/img-3.jpg" alt="Image 3"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-4.jpg"><img
+									src="one-page/images/gallery/img-4.jpg" alt="Image 4"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-5.jpg"><img
+									src="one-page/images/gallery/img-5.jpg" alt="Image 5"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-6.jpg"><img
+									src="one-page/images/gallery/img-6.jpg" alt="Image 5"></a>
+						</div>
+						<div class="oc-item">
+							<a data-lightbox="gallery-item" href="one-page/images/gallery/img-7.jpg"><img
+									src="one-page/images/gallery/img-7.jpg" alt="Image 5"></a>
+						</div>
+
+					</div>
+
+				</div> -->
+
+				<!-- <div class="section py-4"
+					style="color: #999; background-color: #F8FAFB; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+					<div class="container">
+						<div class="row mt-6 g-5 mb-6">
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-browser inline-block mb-4" style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Cross Browser</h4>
+								</div>
+								<p style="line-height: 26px;">Canvas 4 Loads Faster &amp; Smoother than the Previous
+									Versions providing an Optimal Experience for your Users.</p>
+							</div>
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-adjustments inline-block mb-4"
+									style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Flexible Options</h4>
+								</div>
+								<p style="line-height: 26px;">Unleash the Power of Mega Menus by adding Widgets &amp;
+									Mixed Columns powered by the Bootstrap Grid.</p>
+							</div>
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-calendar inline-block mb-4" style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Scheduled Backups</h4>
+								</div>
+								<p style="line-height: 26px;">Amazing set of New Components giving you Opportunity to
+									Create an Interactive Website for your Business.</p>
+							</div>
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-desktop inline-block mb-4" style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Responsive Ready</h4>
+								</div>
+								<p style="line-height: 26px;">Convert any Grid to an Isotope Grid easily with Filterable
+									Options making it extremely flexible and powerful.</p>
+							</div>
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-bargraph inline-block mb-4" style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Increased Conversions</h4>
+								</div>
+								<p style="line-height: 26px;">Display an Alternate Lighter Menu on Responsive Devices
+									with the same Markup Code as before. Awesomely Useful.</p>
+							</div>
+
+							<div class="col-lg-4">
+								<i class="i-plain i-large icon-et-cloud inline-block mb-4" style="color: #999;"></i>
+								<div class="heading-block border-bottom-0 mb-3">
+									<h4 class="fs-6">Cloud Sharing</h4>
+								</div>
+								<p style="line-height: 26px;">Added SPAM Protection for your Precious Forms so that you
+									receive Emails only from Authentic Real Users.</p>
+							</div>
+
+						</div>
+					</div>
+				</div> -->
+
+				<div class="section text-center mb-0 bg-transparent">
+					<div class="container">
+
+						<h3 class="ls-1 fw-normal" style="font-size: 32px;">
+							Querés saber más sobre el menú digital para tu restaurante?
+						</h3>
+
+						<!-- Botón que redirige a WhatsApp con mensaje prellenado -->
+						<a href="https://wa.me/541112345678?text=Hola%2C%20quiero%20más%20información%20sobre%20el%20menú%20digital%20para%20mi%20restaurante"
+							target="_blank" class="button button-large button-black text-capitalize"
+							style="border-radius: 23px;">
+							Hablar por WhatsApp
+						</a>
+
+						<!-- Botón que hace scroll a precios -->
+						<a href="#section-pricing" data-scrollto="#section-pricing" data-easing="easeInOutExpo"
+							data-speed="1250" data-offset="160" class="button button-large text-capitalize"
+							style="border-radius: 23px;">
+							Ver planes y precios
+						</a>
+
+						<div class="clear mb-5"></div>
+
+					</div>
+				</div>
+
+
+				<div class="section mt-0 footer-stick"
+					style="padding: 10px 0; background-color: #F8FAFB; border-top: 1px solid #E5E5E5;">
+					<div class="container">
+
+						<!-- <div class="row">
+							<div class="col-lg-4">
+								<div class="app-footer-features"><i class="bi-globe-alt"></i>
+									<h5 class="font-body"><a href="#">Free Training</a><span> &amp; 24-hour
+											coverage</span></h5>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="app-footer-features"><i class="bi-journal"></i>
+									<h5 class="font-body"><a href="#">99.99% Uptime</a><span> the last 12 months</span>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="app-footer-features"><i class="bi-lock"></i>
+									<h5 class="font-body"><span>Serious about</span> <a href="#">Security</a>
+										<span>&amp;</span> <a href="#">Privacy</a>
+									</h5>
+								</div>
+							</div>
+						</div> -->
+
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" style="background-color: #FFF;">
+
+			<div class="container">
+
+				<!-- Footer Widgets
+				============================================= -->
+				<div class="footer-widgets-wrap pb-2">
+					<div class="row">
+
+						<div class="col-lg-12 text-center">
+
+							<div class="widget">
+								<div class="row">
+									<div class="col-lg-12" style="color:#888;">
+										<img src="images/logo-dark.png" alt="Canvas Logo" class="mb-4 w-100p">
+										<p>Automatizamos tus pedidos. Digitalizamos tu menu. Agilizamos tu negocio.</p>
+
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+
+			<div style="background-color: #000;" class="text-center white pt-3 pb-1">
+				<p>© 2025. Sitio desarrollado por<a href="https://clokteam.com/"><img class="aligncenter"
+							src="https://clokteam.com/assets/images/logos/trans-logo.png" alt="" width="130"
+							height="35"></a></p>
+			</div>
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="uil uil-angle-up"></div>
+
+	<!-- JavaScripts
+	============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script>
+		document.querySelectorAll('[data-pricing-plan]').forEach(function (plan) {
+			plan.onclick = function (e) {
+				e.preventDefault();
+
+				document.getElementById('get-started-form-package').value = plan.getAttribute('data-pricing-plan');
+				document.getElementById('modal-get-started-package').innerHTML = plan.getAttribute('data-pricing-plan');
+			};
+		});
+	</script>
+
+</body>
+
+</html>
