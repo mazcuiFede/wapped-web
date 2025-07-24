@@ -1,39 +1,19 @@
 body {
-    font-family: Figtree, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 :root {
     --color-fondo: #F6F4ED;
-    --color-texto: rgb(22, 22, 22);
-    --color-fondo-boton: #4F4E4C;
-    --color-texto-boton: white;
-
-    --color-fondo-boton-carrito: #F9014F;
-    --color-texto-boton-carrito: white;
+    --color-principal: #4F4E4C;
+    --color-texto: white;
+    --color-boton: #4F4E4C;
+    --color-boton-texto: white;
 }
 
-/* Colores */
 .body,
 .title-bg {
     background-color: var(--color-fondo);
 }
-
-.spinner {
-    color: var(--color-texto);
-}
-
-button.btn {
-    color: var(--color-texto-boton);
-    background-color: var(--color-fondo-boton);
-}
-
-button.btn-carrito {
-    color: var(--color-texto-boton-carrito);
-    background-color: var(--color-fondo-boton-carrito);
-}
-
-/* Fin colores */
 
 .w100 {
     width: 100%;
@@ -58,6 +38,7 @@ button.btn-carrito {
 .form-check.button {
     text-align: center;
     margin-top: 20px;
+    background-color: var(--color-principal);
     padding: 15px;
     color: var(--color-texto);
     font-size: 22px;
@@ -70,8 +51,8 @@ button.btn-carrito {
 }
 
 .selectorcantidad button {
-    background-color: var(--color-fondo-boton);
-    color: var(--color-texto-boton);
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
     border: none;
     padding: 10px 20px;
     font-size: 18px;
@@ -126,10 +107,6 @@ button.btn-carrito {
     font-size: 16px;
 }
 
-.fz-18 {
-    font-size: 18px;
-}
-
 .fz-20 {
     font-size: 20px;
 }
@@ -159,7 +136,7 @@ button.btn-carrito {
     font-size: 20px;
     position: fixed;
     font-weight: 500;
-    bottom: 17px;
+    bottom: 50px;
     box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 5px 7px 0px rgba(0, 0, 0, 0.75);
@@ -181,21 +158,6 @@ button.btn-carrito {
     object-fit: contain;
 }
 
-.form-check {
-    display: inline-block;
-    min-height: 1.5rem;
-    padding-left: 1.5em;
-    margin-bottom: .125rem;
-    margin-right: 15px;
-}
-
-.btn-carrito {
-    display: flex;
-    /* Activa flexbox */
-    align-items: center;
-    /* Centra verticalmente */
-    gap: 8px;
-    /* Espacio entre icono y texto */
-    justify-content: center;
-    /* Opcional: centra todo dentro del botón */
+#imagenModal .modal-content {
+    background-color: var(--color-principal);
 }

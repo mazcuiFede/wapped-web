@@ -25,13 +25,15 @@
             <div id="chipsContainer" class="chips-scroll px-3"></div>
         </div>
 
+
         <form id="menuForm">
             <div id="spinner" class="text-center my-5">
-                <div class="spinner-border spinner" role="status">
+                <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Cargando...</span>
                 </div>
+                <p class="mt-2">Cargando menú...</p>
             </div>
-            <div class="row g-4 pt-4" id="contenedorProductos"></div>
+            <div class="row g-4" id="contenedorProductos"></div>
 
             <!-- Sección de Pago y Dirección -->
 
@@ -114,27 +116,25 @@
         </div>
 
 
-        <button id="finalizarPedidoBtn" class="btn floating-btn btn-carrito" onclick="mostrarSeleccion()">
-            <img src="./imagenes/carrito.png" alt="Carrito" width="20">
-            Ver carrito
+        <button id="finalizarPedidoBtn" class="btn btn-danger rounded-pill floating-btn" onclick="mostrarSeleccion()">
+            🛒 Ver carrito
         </button>
     </div>
 
-    <div class="container text-center">
-        <hr />
-        <p class="">Querés tener tu menu digital?</p>
-        <p>
-            <a href="https://clokteam.com/" class="text-white text-decoration-underline"><img
-                    src="https://wapedapp.com/images/logo-dark.png" style="
+    <footer class="bg-dark text-white text-center py-2 mt-3">
+        <div class="container">
+            <p class="mb-0">© 2025 Aplicación desarollada por <a href="https://clokteam.com/"
+                    class="text-white text-decoration-underline"><img
+                        src="https://clokteam.com/assets/images/logos/trans-logo.png" style="
                         width: 85px;
-                    " /></a>
-        </p>
-    </div>
+                    " /></a>.</p>
+        </div>
+    </footer>
 
 
 
     <!-- Toast de confirmación -->
-    <div class="position-fixed bottom-0 p-3" style="z-index: 9999">
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
         <div id="toastProductoAgregado" class="toast align-items-center text-bg-success border-0" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -146,7 +146,7 @@
     </div>
 
     <!-- Toast de eliminación -->
-    <div class="position-fixed bottom-0 p-3" style="z-index: 9999">
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
         <div id="toastProductoQuitado" class="toast align-items-center text-bg-warning border-0" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">

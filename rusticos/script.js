@@ -5,42 +5,70 @@ let lastScrollTop = 0;
 function cargarProductos(productos) {
     const contenedor = document.getElementById("contenedorProductos");
 
-    productos.forEach((prod, index) => {
-        const card = document.createElement("div");
+    // Agrupar productos por Tipo
+    const agrupados = productos.reduce((acc, prod) => {
+        if (!acc[prod.Tipo]) acc[prod.Tipo] = [];
+        acc[prod.Tipo].push(prod);
+        return acc;
+    }, {});
 
+    // Recorrer cada categoría
+    for (let tipo in agrupados) {
+        // Contenedor de categoría
+        const categoriaDiv = document.createElement("div");
+        categoriaDiv.className = "col-xs-12";
 
-        if (prod.tipo === "titulo") {
-            card.className = "col-xs-12";
-            card.innerHTML = `
-                <div class="col">
-                    <h1 class="mb-2 fz-20 mt-4" id="${prod.nombre}">${prod.nombre}</h1>
-                </div>
-            `;
-        }
-        else {
-            card.className = "col-xs-12 col-sm-6";
-            card.innerHTML = `
-              <div class="h-100">
-                <div class="row g-0 pb-4">
-                  <div class="col-7 pr-3">
-                        <h4 class="fz-18">${prod.nombre}</b></h4>
+        // Título de la categoría
+        const titulo = document.createElement("h1");
+        titulo.className = "mb-2 fz-24 text-center mb-4";
+        titulo.id = tipo.replace(/\s+/g, '-'); // ID sin espacios
+        titulo.textContent = tipo;
+        categoriaDiv.appendChild(titulo);
+
+        // Contenedor para los productos de esta categoría
+        const productosContainer = document.createElement("div");
+        productosContainer.className = "row"; // opcional para grid
+
+        agrupados[tipo].forEach((prod, index) => {
+            const prodDiv = document.createElement("div");
+            prodDiv.className = "col-xs-12 col-sm-6";
+            prodDiv.innerHTML = `
+                    <div class="h-100">
+                    <div class="row g-0 pb-4">
+                        <div class="col-7 pr-3">
+                        <h4 class="fz-20">${prod.nombre}</h4>
                         <p class="fz-14">${prod.descripcion}</p>
-                        <h4 class="fz-16"><b>$ ${prod.precio.toLocaleString()}</b></h4>
+                        <h4 class="fz-18"><b>$ ${prod.precio.toLocaleString()}</b></h4>
                         <div class="input-group mt-4 mb-2 selectorcantidad">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${index}, -1)">−</button>
                             <input type="number" class="form-control text-center" id="cantidad${index}" value="0" min="0" readonly>
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${index}, 1)">+</button>
                         </div>
-                  </div>
-                  <div class="col-5">
-                    <img src="${prod.imagen}" class="product-img" alt="${prod.nombre}" onerror="this.onerror=null; this.src='./imagenes/no-disponible.png';">
-                  </div>
-                </div>
-              </div>
-            `;
-        }
-        contenedor.appendChild(card);
-    });
+                        </div>
+                        <div class="col-5">
+                        <img 
+                            src="${prod.imagen ? `https://gym-clok-backend.onrender.com/assets/${prod.imagen}` : './imagenes/no-disponible.png'}" 
+                            class="product-img img-fluid rounded" 
+                            alt="${prod.nombre}"
+                            style="cursor:pointer"
+                            onclick="ampliarImagen(this.src)"
+                        >
+                        </div>
+                    </div>
+                    </div>
+                `;
+
+
+            productosContainer.appendChild(prodDiv);
+        });
+
+        // Agregar todos los productos debajo del título
+        categoriaDiv.appendChild(productosContainer);
+
+        // Agregar la categoría al contenedor principal
+        contenedor.appendChild(categoriaDiv);
+    }
+
 }
 
 function cargarChips(productos) {
@@ -48,26 +76,26 @@ function cargarChips(productos) {
     const stickyHeader = document.getElementById("stickyHeader");
     chipsContainer.innerHTML = "";
 
-    productos.forEach((prod) => {
-        if (prod.tipo === "titulo") {
-            const chip = document.createElement("button");
-            chip.className = "btn btn-sm";
-            chip.innerText = prod.nombre;
+    // Obtener los tipos únicos del array
+    const tiposUnicos = [...new Set(productos.map(prod => prod.Tipo))];
 
-            chip.onclick = () => {
-                const target = document.getElementById(prod.nombre);
-                if (target) {
-                    const offset = stickyHeader.offsetHeight || 0;
-                    const top = target.getBoundingClientRect().top + window.scrollY - offset - 10;
-                    window.scrollTo({ top, behavior: "smooth" });
-                }
-            };
+    tiposUnicos.forEach((tipo) => {
+        const chip = document.createElement("button");
+        chip.className = "btn btn-sm";
+        chip.innerText = tipo;
 
-            chipsContainer.appendChild(chip);
-        }
+        chip.onclick = () => {
+            const target = document.getElementById(tipo.replace(/\s+/g, '-')); // mismo id que en cargarProductos
+            if (target) {
+                const offset = stickyHeader?.offsetHeight || 0;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset - 10;
+                window.scrollTo({ top, behavior: "smooth" });
+            }
+        };
+
+        chipsContainer.appendChild(chip);
     });
 }
-
 
 
 
@@ -75,24 +103,31 @@ function cambiarCantidad(index, delta) {
     const input = document.getElementById(`cantidad${index}`);
     let valor = parseInt(input.value);
     valor = isNaN(valor) ? 0 : valor + delta;
+
     if (valor < 0) valor = 0;
     input.value = valor;
 
     // Animación fade
-    input.classList.remove("fade-change"); // reiniciamos si ya estaba
-    void input.offsetWidth; // forzamos reflow para que vuelva a aplicarse
+    input.classList.remove("fade-change");
+    void input.offsetWidth;
     input.classList.add("fade-change");
 
-    // Limpieza opcional por si querés quitar la clase luego
-    setTimeout(() => {
-        input.classList.remove("fade-change");
-    }, 300);
+    setTimeout(() => input.classList.remove("fade-change"), 300);
+
+    if (delta > 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoAgregado"), { delay: 200 });
+        toast.show();
+    } else if (delta < 0 && valor >= 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoQuitado"), { delay: 200 });
+        toast.show();
+    }
 }
+
 
 function mostrarSeleccion() {
     let productosEnPedido = [];
     let total = 0;
-
+    debugger
     productos.forEach((prod, index) => {
         const cantidad = parseInt(document.getElementById(`cantidad${index}`)?.value);
         if (cantidad > 0) {
@@ -133,95 +168,129 @@ function mostrarSeleccion() {
     modal.show();
 }
 
-function enviarPedidoPorWhatsapp() {
-    const modalContenido = document.getElementById("modalContenido");
-    const productosHtml = modalContenido.querySelector("p")?.innerText || "";
-    const totalHtml = modalContenido.querySelectorAll("p")[1]?.innerText || "";
+async function enviarPedidoPorWhatsapp() {
+    // === 1) Obtener datos del formulario ===
+    const productosHtml = document.querySelector("#modalContenido p")?.innerText || "";
+    const totalHtml = document.querySelector("#modalContenido p:nth-child(2)")?.innerText || "";
 
-    const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || '';
-    const metodoEnvio = document.querySelector('input[name="metodoEnvio"]:checked')?.value || '';
-    const direccion = document.getElementById("direccion")?.value.trim() || '';
-    const instrucciones = document.getElementById("instrucciones")?.value.trim() || '';
-    const comentarios = document.getElementById("comentarios")?.value.trim() || '';
+    const metodoPago = document.querySelector('input[name="metodoPago"]:checked')?.value || "";
+    const metodoEnvio = document.querySelector('input[name="metodoEnvio"]:checked')?.value || "";
+    const direccion = document.getElementById("direccion")?.value.trim() || "";
+    const instrucciones = document.getElementById("instrucciones")?.value.trim() || "";
+    const comentarios = document.getElementById("comentarios")?.value.trim() || "";
 
-    if (metodoEnvio === "Delivery" && direccion === "") {
+    // === 2) Validaciones ===
+    if (metodoEnvio === "Delivery" && !direccion) {
         alert("Por favor, ingresá una dirección para el delivery.");
         return;
     }
 
+    // === 3) Procesar productos ===
+    const descripcionPedido = extraerDescripcionProductos(productosHtml);
+    const totalLimpio = calcularTotal(totalHtml, metodoEnvio);
+
+    // === 4) Construir mensaje de WhatsApp ===
+    const mensajeWhatsApp = construirMensajeWhatsApp({
+        productos: descripcionPedido,
+        total: totalLimpio,
+        pago: metodoPago,
+        envio: metodoEnvio,
+        direccion,
+        instrucciones,
+        comentarios
+    });
+
+    // === 5) Construir JSON para backend ===
+    const pedidoData = {
+        descripcion: descripcionPedido.replace(/%0A/g, ", "), // para almacenarlo limpio
+        total_a_pagar: totalLimpio,
+        forma_de_pago: metodoPago.toLowerCase(),
+        tipo_envio: metodoEnvio.toLowerCase(),
+        direccion: direccion || null,
+        instrucciones_de_envio: instrucciones || null,
+        comentarios: comentarios || null
+    };
+
+    // === 6) Guardar pedido en backend antes de abrir WhatsApp ===
+    const pedidoGuardado = await guardarPedidoEnBackend(pedidoData);
+    if (!pedidoGuardado) {
+        alert("Hubo un error al guardar el pedido. Intenta nuevamente.");
+        return;
+    }
+
+    // === 7) Abrir WhatsApp si todo salió bien ===
+    const numero = "5491122544073";
+    const url = `https://wa.me/${numero}?text=${mensajeWhatsApp}`;
+    window.open(url, "_blank");
+}
+
+// === FUNCIONES AUXILIARES ===
+
+// Extrae los productos y devuelve el string para el mensaje
+function extraerDescripcionProductos(productosHtml) {
+    if (!productosHtml) return "";
+    return productosHtml
+        .replace("Productos en el pedido:", "")
+        .trim()
+        .split("\n")
+        .map(linea => linea.replace(/^[-•\s]*/, "").trim())
+        .filter(Boolean)
+        .map(item => `- ${item}`)
+        .join("%0A"); // para WhatsApp
+}
+
+// Calcula el total y agrega envío si corresponde
+function calcularTotal(totalHtml, metodoEnvio) {
+    if (!totalHtml) return 0;
+    let total = parseFloat(
+        totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim()
+    );
+    if (metodoEnvio === "Delivery") {
+        total += 800; // costo extra de envío
+    }
+    return total;
+}
+
+// Construye el mensaje final de WhatsApp
+function construirMensajeWhatsApp({ productos, total, pago, envio, direccion, instrucciones, comentarios }) {
     let mensaje = `Hola! Quisiera hacer el siguiente pedido:%0A`;
 
-    let productosSolo = "";
-    if (productosHtml) {
-        productosSolo = productosHtml
-            .replace("Productos en el pedido:", "")
-            .trim()
-            .split('\n')
-            .map(linea => linea.replace(/^[-•\s]*/, "").trim())
-            .filter(Boolean)
-            .map(item => `- ${item}`)
-            .join("%0A");
+    if (productos) mensaje += `%0A${productos}`;
+    if (total) mensaje += `%0A%0A*Total a pagar: ${total.toLocaleString()}*`;
 
-        mensaje += `%0A${productosSolo}`;
-    }
+    mensaje += `%0A%0AForma de pago: ${pago}`;
+    mensaje += `%0ATipo de envío: ${envio}`;
 
-    // Total
-    let totalLimpio = 0;
-    if (totalHtml) {
-        totalLimpio = +totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim();
-        if (metodoEnvio === "Delivery") {
-            totalLimpio += 800; // Costo de envío
-        }
-        mensaje += `%0A%0A*Total a pagar: $${totalLimpio.toLocaleString()}*`;
-    }
-
-    // Métodos
-    mensaje += `%0A%0A*Forma de pago: ${metodoPago}*`;
-    mensaje += `%0ATipo de envío: ${metodoEnvio}`;
-
-    // Delivery info
-    if (metodoEnvio === "Delivery") {
-        mensaje += `%0A*Dirección: ${direccion}*`;
+    if (envio === "Delivery") {
+        mensaje += `%0ADirección: ${direccion}`;
         if (instrucciones) mensaje += `%0AInstrucciones: ${instrucciones}`;
     }
 
-    // Comentario
     if (comentarios) {
         mensaje += `%0AComentario: ${comentarios}`;
     }
 
-    const numero = "5491122544073";
-    //const numero = "5491131286452";
-    const url = `https://wa.me/${numero}?text=${mensaje}`;
+    return mensaje;
+}
 
-    // ====== LLAMADO AL BACKEND ANTES DE ABRIR WHATSAPP ======
-    fetch("https://gym-clok-backend.onrender.com/items/pedidos", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer L9e-Odzeq8qiINj1ZWU2S_7xFGGLi2UV"
-        },
-        body: JSON.stringify({
-            descripcion: productosSolo.replace(/%0A/g, "\n"),
-            total_a_pagar: totalLimpio,
-            forma_de_pago: metodoPago,
-            tipo_envio: metodoEnvio.toLowerCase(),
-            direccion: direccion,
-            instrucciones_de_envio: instrucciones,
-            comentarios: comentarios
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Pedido registrado:", data);
-        })
-        .catch(error => {
-            console.error("Error al registrar pedido:", error);
-            alert("Hubo un problema al registrar el pedido. Intentá nuevamente.");
+// Hace el POST al backend
+async function guardarPedidoEnBackend(pedidoData) {
+    try {
+        const resp = await fetch("https://gym-clok-backend.onrender.com/items/pedidos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer jkcQOrn9wepjC7GVqB6JphDvh4_qYQ0d"
+            },
+            body: JSON.stringify(pedidoData)
         });
 
-    window.open(url, "_blank");
-
+        if (!resp.ok) throw new Error(`Error HTTP ${resp.status}`);
+        return await resp.json();
+    } catch (err) {
+        console.error("❌ Error guardando pedido:", err);
+        return null;
+    }
 }
 
 
@@ -232,9 +301,17 @@ window.onload = async () => {
     try {
 
         spinner.style.display = "block";
-        const response = await fetch("./datos-menu.json");
 
-        productos = await response.json();
+        const response = await fetch("https://gym-clok-backend.onrender.com/items/menu_rusticos", {
+            headers: {
+                "Authorization": "Bearer jkcQOrn9wepjC7GVqB6JphDvh4_qYQ0d"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
+        }
+        productos = (await response.json()).data;
 
         cargarProductos(productos)
         cargarChips(productos)
@@ -246,4 +323,13 @@ window.onload = async () => {
         spinner.style.display = "none";
     }
 };
+
+
+function ampliarImagen(src) {
+    const imagenAmpliada = document.getElementById("imagenAmpliada");
+    imagenAmpliada.src = src;
+
+    const modal = new bootstrap.Modal(document.getElementById("imagenModal"));
+    modal.show();
+}
 
