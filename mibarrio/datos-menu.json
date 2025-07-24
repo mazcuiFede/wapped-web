@@ -1,162 +1,220 @@
 [
     {
         "tipo": "titulo",
-        "nombre": "Braseados Completos"
+        "nombre": "Pizzas"
     },
     {
         "tipo": "producto",
-        "nombre": "Caoba",
-        "precio": 15500,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera,Queso Chedar, Cebolla Caramelizada, Panceta Y Barbacoa ",
-        "imagen": "./imagenes/caoba.png"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Olmo",
-        "precio": 15500,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera, Queso Tybo, Alioli Y Tomates Secos ",
-        "imagen": "./imagenes/olmo.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Olivo",
-        "precio": 15500,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera, Queso Azul, Rucula Y Tomates Secos ",
-        "imagen": "./imagenes/olivo.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Roble",
-        "precio": 15500,
-        "descripcion": "Pan Ciabatta, Bondiola a La Barbacoa Y Queso Chedar ",
-        "imagen": "./imagenes/roble.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Alamo",
-        "precio": 15500,
-        "descripcion": "Pan Ciabatta, Breaseado De Ternera, Provoleta, Mayochimi Y Criolla ",
-        "imagen": "./imagenes/alamo.jpeg"
-    },
-    {
-        "tipo": "titulo",
-        "nombre": "Braseado Simples"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Simple Cheddar",
-        "precio": 13600,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera Y Queso Chedar ",
-        "imagen": "./imagenes/simple-queso-cheddar.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Simple Queso Azul",
-        "precio": 13600,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera Y Queso Azul",
-        "imagen": "./imagenes/simple-queso-azul.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Simple Provoleta",
-        "precio": 13600,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera Y Queso Provoleta ",
-        "imagen": "./imagenes/simple-queso-provoleta.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Simple Queso Tybo",
-        "precio": 13600,
-        "descripcion": "Pan Ciabatta, Braseado De Ternera Y Queso Tybo ",
-        "imagen": "./imagenes/simple-queso-tybo.jpeg"
-    },
-    {
-        "tipo": "titulo",
-        "nombre": "Sandwich de Focaccia"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Tostado Rustico",
-        "precio": 12900,
-        "descripcion": "Focaccia De Tomate, Jamon Crudo, Queso Tybo,, rucula, Alioli Y Tomates Secos ",
-        "imagen": "./imagenes/tostado.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Madroño ",
-        "precio": 12900,
-        "descripcion": "Focaccia De Tomate, Mortadela, Pesto Y Stracciatella ",
-        "imagen": "./imagenes/madrono.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Nogal",
-        "precio": 12500,
-        "descripcion": "Focaccia De Tomate, Berenjena,Queso Tybo,, Morrones Y Pesto ",
-        "imagen": "./imagenes/nogal.jpeg"
-    },
-    {
-        "tipo": "titulo",
-        "nombre": "Sandwich en pan de Papa"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Pino ",
-        "precio": 12500,
-        "descripcion": "Pan De Papa, Carne Braseada, Queso Chedar, Panceta Y Bbq ",
-        "imagen": "./imagenes/pino.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Cedro",
-        "precio": 12500,
-        "descripcion": "Pan De Papa, Carne Braseada,, Queso Chedar Y Salsa Rustica ",
-        "imagen": "./imagenes/cedro.jpeg"
-    },
-    {
-        "tipo": "titulo",
-        "nombre": "Papas"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Papas Chedar",
+        "nombre": "Pizza Muzzarella (Chica)",
         "precio": 12000,
-        "descripcion": "Papas Con Chedar Fundido Y Verdeo ",
-        "imagen": "./imagenes/papas-cheddar-verdeo.jpeg"
+        "descripcion": "Deliciosa pizza con salsa de tomate, abundante muzzarella y un toque de orégano para realzar su sabor clásico.",
+        "imagen": "./imagenes/muzzarela.png"
     },
     {
         "tipo": "producto",
-        "nombre": "Papas Chedar 1/2",
-        "precio": 10000,
-        "descripcion": "Papas Con Chedar Fundido Y Verdeo ",
-        "imagen": "./imagenes/papas-cheddar-verdeo.jpeg"
+        "nombre": "Pizza Muzzarella (Grande)",
+        "precio": 14000,
+        "descripcion": "Porción grande de nuestra clásica pizza con salsa de tomate, muzzarella fundida y orégano aromático.",
+        "imagen": "./imagenes/mi-barrio.png"
     },
     {
         "tipo": "producto",
-        "nombre": "Quebracho",
-        "precio": 16500,
-        "descripcion": "Papas Fritas, Chedar Fundido, Carne Braseada, Cebolla De Verdeo Y Bbq ",
-        "imagen": "./imagenes/papas-quebracho.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Quebracho 1/2 ",
-        "precio": 12000,
-        "descripcion": "Papas Fritas, Chedar Fundido, Carne Braseada, Cebolla De Verdeo Y Bbq ",
-        "imagen": "./imagenes/papas-quebracho.jpeg"
-    },
-    {
-        "tipo": "producto",
-        "nombre": "Alerce ",
+        "nombre": "Pizza Jamón y Morrón (Chica)",
         "precio": 17000,
-        "descripcion": "Papas Fritas, Chedar Fundido, Bondiola A La Bbq, Cebolla Caramelizada, Cebolla de Verdeo Y Bbq ",
-        "imagen": "./imagenes/alerce.jpeg"
+        "descripcion": "Sabores combinados de salsa de tomate, jamón cocido, muzzarella, morrón tierno y orégano fresco.",
+        "imagen": "./imagenes/mi-barrio.png"
     },
     {
         "tipo": "producto",
-        "nombre": "Alerce 1/2 ",
-        "precio": 12500,
-        "descripcion": "Papas Fritas, Chedar Fundido, Bondiola A La Bbq, Cebolla Caramelizada, Cebolla de Verdeo Y Bbq ",
-        "imagen": "./imagenes/elerce.jpeg"
+        "nombre": "Pizza Jamón y Morrón (Grande)",
+        "precio": 19500,
+        "descripcion": "Pizza grande con salsa de tomate, jamón cocido, muzzarella, morrón y un toque de orégano para un sabor irresistible.",
+        "imagen": "./imagenes/jamon.png"
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Pizza Napolitana (Chica)",
+        "precio": 17000,
+        "descripcion": "Clásica pizza con salsa de tomate, muzzarella, rodajas frescas de tomate, ajo y orégano para un sabor tradicional."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Pizza Napolitana (Grande)",
+        "precio": 19000,
+        "descripcion": "Versión grande de nuestra pizza Napolitana, con ingredientes frescos y un sabor auténtico."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Pizza Jamón (Chica)",
+        "precio": 17000,
+        "descripcion": "Deliciosa pizza chica con salsa de tomate, jamón cocido, muzzarella y un toque de orégano."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Pizza Jamón (Grande)",
+        "precio": 19000,
+        "descripcion": "Pizza grande con salsa de tomate, jamón cocido, muzzarella fundida y orégano aromático."
+    },
+    {
+        "tipo": "titulo",
+        "nombre": "Entradas"
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Faina frita",
+        "precio": 6900,
+        "descripcion": "Crujiente y dorada fainá frita, ideal para acompañar tus pizzas o disfrutar sola como snack."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Papas fritas",
+        "precio": 8500,
+        "descripcion": "Clásicas papas fritas crocantes, perfectas para compartir o como acompañamiento."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Papas con cheddar y bacon",
+        "precio": 9500,
+        "descripcion": "Papas fritas cubiertas con cheddar derretido y crujientes trozos de bacon, un sabor irresistible."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Chicken fingers",
+        "precio": 9500,
+        "descripcion": "Tiras de pollo empanizadas y fritas, crocantes por fuera y jugosas por dentro."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Bastones de muzzarella",
+        "precio": 9200,
+        "descripcion": "Deliciosos bastones de muzzarella empanizados, crujientes y fundidos por dentro."
+    },
+    {
+        "tipo": "titulo",
+        "nombre": "Empanadas"
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Carne cortada a cuchillo",
+        "precio": 2100,
+        "descripcion": "Empanada tradicional con carne picada a cuchillo, sazonada con especias y cocida a la perfección."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Roquefort",
+        "precio": 2100,
+        "descripcion": "Empanada rellena con queso roquefort, de sabor fuerte y delicioso."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Jamón y queso",
+        "precio": 2100,
+        "descripcion": "Clásica empanada rellena con jamón cocido y queso fundido."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Verdura",
+        "precio": 2100,
+        "descripcion": "Empanada con mezcla de verduras frescas y especias, ideal para vegetarianos."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Humita",
+        "precio": 2100,
+        "descripcion": "Rellena con dulce crema de choclo y especias, una opción suave y tradicional."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Pollo",
+        "precio": 2100,
+        "descripcion": "Empanada con jugoso pollo desmenuzado y condimentado a la perfección."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Queso y cebolla",
+        "precio": 2100,
+        "descripcion": "Deliciosa mezcla de queso cremoso y cebolla caramelizada."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Capresse",
+        "precio": 2100,
+        "descripcion": "Empanada fresca con tomate, mozzarella y albahaca, inspirada en la ensalada Capresse."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Bondiola desmechada a la cerveza",
+        "precio": 2300,
+        "descripcion": "Sugerida del Cheff. Bondiola cocida y desmechada lentamente en cerveza para un sabor intenso y jugoso."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada Roastbeef al vino tinto",
+        "precio": 2300,
+        "descripcion": "Sugerida del Cheff. Roastbeef con reducción de vino tinto que aporta un sabor sofisticado."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada frita Carne cortada a cuchillo",
+        "precio": 2300,
+        "descripcion": "Versión frita de la clásica empanada de carne cortada a cuchillo, con textura crujiente."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada frita Jamón y queso",
+        "precio": 2300,
+        "descripcion": "Empanada frita rellena de jamón y queso fundido, crujiente y sabrosa."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada frita Pollo",
+        "precio": 2300,
+        "descripcion": "Empanada frita con relleno de pollo jugoso y bien condimentado."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada frita Bondiola desmechada a la cerveza",
+        "precio": 2500,
+        "descripcion": "Sugerida del Cheff. Bondiola desmechada cocida en cerveza y frita, con un sabor único y crujiente."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Empanada frita Roastbeef al vino tinto",
+        "precio": 2500,
+        "descripcion": "Sugerida del Cheff. Roastbeef al vino tinto, en versión frita para un contraste crocante y sabroso."
+    },
+    {
+        "tipo": "titulo",
+        "nombre": "Milanesas"
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Milanesa de carne",
+        "precio": 18000,
+        "descripcion": "Clásica milanesa de carne vacuna, crujiente por fuera y jugosa por dentro, servida con guarnición."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Milanesa de pollo",
+        "precio": 17000,
+        "descripcion": "Milanesa de pechuga de pollo empanizada y frita, ideal para un plato sabroso y liviano."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Milanesa a la napolitana",
+        "precio": 21000,
+        "descripcion": "Milanesa cubierta con salsa de tomate, jamón, muzzarella y gratinada al horno."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Milanesa con papas fritas",
+        "precio": 22000,
+        "descripcion": "Milanesa clásica acompañada de una porción de papas fritas doradas y crocantes."
+    },
+    {
+        "tipo": "producto",
+        "nombre": "Milanesa rellena de jamón y queso",
+        "precio": 23000,
+        "descripcion": "Milanesa jugosa rellena con jamón y queso fundido, un verdadero placer para el paladar."
     }
 ]

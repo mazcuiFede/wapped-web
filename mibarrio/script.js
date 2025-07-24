@@ -33,7 +33,12 @@ function cargarProductos(productos) {
                         </div>
                   </div>
                   <div class="col-5">
-                    <img src="${prod.imagen}" class="product-img" alt="${prod.nombre}" onerror="this.onerror=null; this.src='./imagenes/no-disponible.png';">
+                    <img src="${prod.imagen}" 
+                        class="product-img" 
+                        alt="${prod.nombre}" 
+                        onerror="this.onerror=null; this.src='./imagenes/no-disponible.png';" 
+                        style="cursor:pointer"
+                        onclick="ampliarImagen(this.src)">
                   </div>
                 </div>
               </div>
@@ -75,18 +80,24 @@ function cambiarCantidad(index, delta) {
     const input = document.getElementById(`cantidad${index}`);
     let valor = parseInt(input.value);
     valor = isNaN(valor) ? 0 : valor + delta;
+
     if (valor < 0) valor = 0;
     input.value = valor;
 
     // Animación fade
-    input.classList.remove("fade-change"); // reiniciamos si ya estaba
-    void input.offsetWidth; // forzamos reflow para que vuelva a aplicarse
+    input.classList.remove("fade-change");
+    void input.offsetWidth;
     input.classList.add("fade-change");
 
-    // Limpieza opcional por si querés quitar la clase luego
-    setTimeout(() => {
-        input.classList.remove("fade-change");
-    }, 300);
+    setTimeout(() => input.classList.remove("fade-change"), 300);
+
+    if (delta > 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoAgregado"), { delay: 200 });
+        toast.show();
+    } else if (delta < 0 && valor >= 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoQuitado"), { delay: 200 });
+        toast.show();
+    }
 }
 
 function mostrarSeleccion() {
@@ -190,8 +201,7 @@ function enviarPedidoPorWhatsapp() {
         mensaje += `%0AComentario: ${comentarios}`;
     }
 
-    const numero = "5491122544073";
-    //const numero = "5491131286452";
+    const numero = "5491157692312";
     const url = `https://wa.me/${numero}?text=${mensaje}`;
 
     // ====== LLAMADO AL BACKEND ANTES DE ABRIR WHATSAPP ======
@@ -247,3 +257,10 @@ window.onload = async () => {
     }
 };
 
+function ampliarImagen(src) {
+    const imagenAmpliada = document.getElementById("imagenAmpliada");
+    imagenAmpliada.src = src;
+
+    const modal = new bootstrap.Modal(document.getElementById("imagenModal"));
+    modal.show();
+}
