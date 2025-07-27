@@ -21,7 +21,7 @@ function cargarProductos(productos) {
             card.className = "col-xs-12 col-sm-6";
             card.innerHTML = `
               <div class="h-100">
-                <div class="row g-0 pb-4">
+                <div class="row g-0">
                   <div class="col-7 pr-3">
                         <h4 class="fz-16">${prod.nombre}</b></h4>
                         <p class="fz-14">${prod.descripcion}</p>
@@ -33,7 +33,12 @@ function cargarProductos(productos) {
                         </div>
                   </div>
                   <div class="col-5">
-                    <img src="${prod.imagen}" class="product-img" alt="${prod.nombre}" onerror="this.onerror=null; this.src='./imagenes/no-disponible.png';">
+                    <img src="${prod.imagen}" 
+                        class="product-img" 
+                        alt="${prod.nombre}" 
+                        onerror="this.onerror=null; this.src='./imagenes/no-disponible.png';" 
+                        style="cursor:pointer"
+                        onclick="ampliarImagen(this.src)">
                   </div>
                 </div>
               </div>
@@ -51,7 +56,7 @@ function cargarChips(productos) {
     productos.forEach((prod) => {
         if (prod.tipo === "titulo") {
             const chip = document.createElement("button");
-            chip.className = "btn btn-outline-primary btn-sm rounded-pill";
+            chip.className = "btn btn-sm";
             chip.innerText = prod.nombre;
 
             chip.onclick = () => {
@@ -75,18 +80,24 @@ function cambiarCantidad(index, delta) {
     const input = document.getElementById(`cantidad${index}`);
     let valor = parseInt(input.value);
     valor = isNaN(valor) ? 0 : valor + delta;
+
     if (valor < 0) valor = 0;
     input.value = valor;
 
     // Animación fade
-    input.classList.remove("fade-change"); // reiniciamos si ya estaba
-    void input.offsetWidth; // forzamos reflow para que vuelva a aplicarse
+    input.classList.remove("fade-change");
+    void input.offsetWidth;
     input.classList.add("fade-change");
 
-    // Limpieza opcional por si querés quitar la clase luego
-    setTimeout(() => {
-        input.classList.remove("fade-change");
-    }, 300);
+    setTimeout(() => input.classList.remove("fade-change"), 300);
+
+    if (delta > 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoAgregado"), { delay: 200 });
+        toast.show();
+    } else if (delta < 0 && valor >= 0) {
+        const toast = new bootstrap.Toast(document.getElementById("toastProductoQuitado"), { delay: 200 });
+        toast.show();
+    }
 }
 
 function mostrarSeleccion() {
@@ -151,9 +162,9 @@ function enviarPedidoPorWhatsapp() {
 
     let mensaje = `Hola! Quisiera hacer el siguiente pedido:%0A`;
 
-    // Productos
+    let productosSolo = "";
     if (productosHtml) {
-        const productosSolo = productosHtml
+        productosSolo = productosHtml
             .replace("Productos en el pedido:", "")
             .trim()
             .split('\n')
@@ -166,8 +177,9 @@ function enviarPedidoPorWhatsapp() {
     }
 
     // Total
+    let totalLimpio = 0;
     if (totalHtml) {
-        let totalLimpio = +totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim();
+        totalLimpio = +totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim();
         if (metodoEnvio === "Delivery") {
             totalLimpio += 800; // Costo de envío
         }
@@ -189,9 +201,35 @@ function enviarPedidoPorWhatsapp() {
         mensaje += `%0AComentario: ${comentarios}`;
     }
 
-    const numero = "5491122544073";
-    //const numero = "5491131286452";
+    const numero = "5491157692312";
     const url = `https://wa.me/${numero}?text=${mensaje}`;
+
+    // ====== LLAMADO AL BACKEND ANTES DE ABRIR WHATSAPP ======
+    fetch("https://gym-clok-backend.onrender.com/items/pedidos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer L9e-Odzeq8qiINj1ZWU2S_7xFGGLi2UV"
+        },
+        body: JSON.stringify({
+            descripcion: productosSolo.replace(/%0A/g, "\n"),
+            total_a_pagar: totalLimpio,
+            forma_de_pago: metodoPago,
+            tipo_envio: metodoEnvio.toLowerCase(),
+            direccion: direccion,
+            instrucciones_de_envio: instrucciones,
+            comentarios: comentarios
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Pedido registrado:", data);
+        })
+        .catch(error => {
+            console.error("Error al registrar pedido:", error);
+            alert("Hubo un problema al registrar el pedido. Intentá nuevamente.");
+        });
+
     window.open(url, "_blank");
 
 }
@@ -219,3 +257,10 @@ window.onload = async () => {
     }
 };
 
+function ampliarImagen(src) {
+    const imagenAmpliada = document.getElementById("imagenAmpliada");
+    imagenAmpliada.src = src;
+
+    const modal = new bootstrap.Modal(document.getElementById("imagenModal"));
+    modal.show();
+}

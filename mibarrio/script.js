@@ -264,3 +264,23 @@ function ampliarImagen(src) {
     const modal = new bootstrap.Modal(document.getElementById("imagenModal"));
     modal.show();
 }
+
+document.querySelectorAll('input[name="metodoPago"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const campoMP = document.getElementById("campoMercadoPago");
+        campoMP.style.display = (radio.id === "mercadoPago" && radio.checked) ? "block" : "none";
+    });
+});
+
+// Función para copiar al portapapeles
+function copiarAlias() {
+    const aliasInput = document.getElementById("mpAlias");
+    aliasInput.select();
+    aliasInput.setSelectionRange(0, 99999); // para móviles
+    document.execCommand("copy");
+
+    // Feedback visual
+    const btn = event.target;
+    btn.textContent = "✅ Copiado!";
+    setTimeout(() => (btn.textContent = "📋 Copiar"), 1500);
+}

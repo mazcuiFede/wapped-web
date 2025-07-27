@@ -3,18 +3,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-:root {
-    --color-fondo: #DBDBDB;
-    --color-texto: #4E847D;
-    --color-fondo-boton: #748B93;
-    --color-texto-boton: white;
-
-    --color-fondo-boton-carrito: #C4323b;
-    --color-texto-boton-carrito: white;
-}
-
 /* Colores */
-.body {
+.body,
+.title-bg {
     background-color: var(--color-fondo);
 }
 
@@ -27,34 +18,12 @@ button.btn {
     background-color: var(--color-fondo-boton);
 }
 
-button.btn:hover,
-button.btn:active,
-:not(.btn-check)+.btn:active {
-    color: var(--color-texto-boton);
-    background-color: var(--color-fondo-boton);
-    filter: brightness(0.9);
-    /* 0.9 = 10% más oscuro */
-}
-
 button.btn-carrito {
     color: var(--color-texto-boton-carrito);
     background-color: var(--color-fondo-boton-carrito);
 }
 
 /* Fin colores */
-
-
-.title-bg {
-    background-image: url(./imagenes/header-fondo.webp);
-    background-repeat: no-repeat;
-    /* para que no se repita */
-    background-position: center;
-    /* centra la imagen */
-    background-size: cover;
-    /* ajusta la imagen al contenedor */
-    margin: 0 -12px;
-    text-align: center;
-}
 
 .w100 {
     width: 100%;
@@ -191,6 +160,7 @@ button.btn-carrito {
 .toast {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    max-width: 255px;
 }
 
 .toast.show {
@@ -212,11 +182,43 @@ button.btn-carrito {
 
 .btn-carrito {
     display: flex;
-    /* Activa flexbox */
     align-items: center;
-    /* Centra verticalmente */
     gap: 8px;
-    /* Espacio entre icono y texto */
     justify-content: center;
-    /* Opcional: centra todo dentro del botón */
+}
+
+#deliveryFields {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+#deliveryFields.show {
+    max-height: 300px;
+    /* suficiente para el contenido */
+    opacity: 1;
+}
+
+.waped-card {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado inicial: oculto */
+#campoAliasBancario {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estado visible con animación */
+#campoAliasBancario.mostrar {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 10px;
 }
