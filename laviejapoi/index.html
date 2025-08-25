@@ -7,8 +7,17 @@
     <title>Menú de Rústicos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .object-fit-cover {
-            object-fit: cover;
+        :root {
+            --color-fondo: #F6F4ED;
+            --color-texto: rgb(22, 22, 22);
+            --color-fondo-boton: #4F4E4C;
+            --bs-btn-hover-bg: #4F4E4C;
+            --bs-btn-active-bg: #4F4E4C;
+            --color-texto-boton: white;
+            --bs-btn-hover-color: white;
+            --bs-btn-active-color: white;
+            --color-fondo-boton-carrito: #F9014F;
+            --color-texto-boton-carrito: white;
         }
 
         .title-bg {
@@ -70,10 +79,6 @@
                         <div>
 
                             <div class="mt-4">
-                                <h5 class="mt-3 mb-3">Tu número de Whatsapp</h5>
-                                <input type="number" class="form-control" id="nroWhatsappCliente">
-                            </div>
-                            <div class="mt-4">
                                 <h5 class="mt-3 mb-3">Algún comentario sobre el pedido?</h5>
                                 <textarea type="textarea" class="form-control" id="comentarios"></textarea>
                             </div>
@@ -94,10 +99,10 @@
                                 <label for="aliasBancario" class="form-label"><b>Alias</b>: <small>(tocalo para
                                         copiarlo)</small></label>
                                 <div class="input-group">
-                                    <input type="text" id="aliasBancario" class="form-control w-100"
-                                        value="rusticoslanus" readonly onclick="copiarAlias(this)">
+                                    <input type="text" id="aliasBancario" class="form-control w-100" value="aliasalias"
+                                        readonly onclick="copiarAlias(this)">
                                 </div>
-                                <p id="mensajeCopiado" style="color: green; display: none; margin-top: 10px;">✅ Alias
+                                <p id="mensajeCopiado" style="color: green; display: none; margin-top: 5px;">✅ Alias
                                     copiado!</p>
                             </div>
 
@@ -127,7 +132,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="btnWhatsapp" class="btn btn-success"
-                            onclick="enviarPedidoPorWhatsapp('5491122544073')">Confirmar
+                            onclick="enviarPedidoPorWhatsapp('5491131286452')">Confirmar
                             Pedido</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
@@ -195,8 +200,6 @@
     </div>
 
 
-    <!-- <script src="https://wapedapp.com/app-script.js"></script> -->
-    <script src="../app-script.js"></script>
     <script>
 
         window.onload = async () => {
@@ -207,18 +210,13 @@
 
                 spinner.style.display = "block";
 
-                const response = await fetch("https://waped-strapi-cloudinary-app.onrender.com/api/menues-rusticos?filters[restaurant][documentId][$eq]=mi3iy0qsv6rib2z306oiuewm&populate=*", {
-                    method: "GET",
-                    headers: {
-                        "Authorization": "Bearer 33fac42f93a470cb835607df23f272a04ace72d6b150147acb077c39ecd7c941e0eb944ecad810e41c1c35af0e7d27dcc91bda8ea26a41cd3a03841e0b4ede3907940440ac0e8f8670e523c77477c514fd7b22a79447c1f732510f9da4ff3023bed4c5be3a1a445ba34e837861af8079e514b15cbffaca874c7299dae4fe6bcb",
-                        "Content-Type": "application/json"
-                    }
-                });
+                const response = await fetch("https://waped-app.onrender.com/items/menu_pizzeria_la_vieja_poi");
 
                 if (!response.ok) {
                     throw new Error(`Error en la solicitud: ${response.statusText}`);
                 }
-                productos = (await response.json()).data
+                productos = (await response.json()).data;
+
                 cargarProductos(productos)
                 cargarChips(productos)
 
@@ -233,17 +231,16 @@
         // Hace el POST al backend
         async function guardarPedidoEnBackend(pedidoData) {
             try {
-                const resp = await fetch("https://waped-strapi-cloudinary-app.onrender.com/api/pedidos-rusticos", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": "Bearer 33fac42f93a470cb835607df23f272a04ace72d6b150147acb077c39ecd7c941e0eb944ecad810e41c1c35af0e7d27dcc91bda8ea26a41cd3a03841e0b4ede3907940440ac0e8f8670e523c77477c514fd7b22a79447c1f732510f9da4ff3023bed4c5be3a1a445ba34e837861af8079e514b15cbffaca874c7299dae4fe6bcb",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ data: { ...pedidoData, restaurant: "mi3iy0qsv6rib2z306oiuewm" } })
-                });
+                // const resp = await fetch("https://waped-app.onrender.com/items/pedidos_rusticos", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json"
+                //     },
+                //     body: JSON.stringify(pedidoData)
+                // });
 
-                if (!resp.ok) throw new Error(`Error HTTP ${resp.status}`);
-                return resp.status;
+                // if (!resp.ok) throw new Error(`Error HTTP ${resp.status}`);
+                // return resp.status;
             } catch (err) {
                 console.error("❌ Error guardando pedido:", err);
                 return null;
@@ -251,6 +248,8 @@
         }
 
     </script>
+    <script src="https://wapedapp.com/app-script.js"></script>
+    <!-- <script src="../app-script.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

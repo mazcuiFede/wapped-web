@@ -2,32 +2,26 @@ let productos = []
 let lastScrollTop = 0;
 
 function cargarProductos(productos) {
+
     const contenedor = document.getElementById("contenedorProductos");
 
-    const agrupados = productos.reduce((acc, prod) => {
-        if (!acc[prod.tipo]) acc[prod.tipo] = [];
-        acc[prod.tipo].push(prod);
-        return acc;
-    }, {});
+    const categoriasConProductosArray = getCategorias(productos)
 
-    // Recorrer cada categoría
-    for (let tipo in agrupados) {
-        // Contenedor de categoría
+    for (let categoria of categoriasConProductosArray) {
         const categoriaDiv = document.createElement("div");
         categoriaDiv.className = "col-xs-12";
 
-        // Título de la categoría
         const titulo = document.createElement("h1");
         titulo.className = "mb-2 fz-24 text-center mb-4";
-        titulo.id = tipo.replace(/\s+/g, '-'); // ID sin espacios
-        titulo.textContent = tipo;
+        titulo.id = categoria.nombre.replace(/\s+/g, '-'); // ID sin espacios
+        titulo.textContent = categoria.nombre;
         categoriaDiv.appendChild(titulo);
 
         // Contenedor para los productos de esta categoría
         const productosContainer = document.createElement("div");
-        productosContainer.className = "row"; // opcional para grid
+        productosContainer.className = "row";
 
-        agrupados[tipo].forEach((prod, index) => {
+        categoria.productos.forEach((prod, index) => {
             const prodDiv = document.createElement("div");
             const precioFormateado = new Intl.NumberFormat("es-AR", {
                 style: "currency",
@@ -35,31 +29,32 @@ function cargarProductos(productos) {
             }).format(prod.precio);
 
             prodDiv.className = "col-xs-12 col-sm-6";
+
             prodDiv.innerHTML = `
-                    <div class="h-100">
-                    <div class="row g-0 waped-card">
-                        <div class="col-7 pr-3">
-                        <h4 class="fz-20">${prod.nombre}</h4>
-                        <p class="fz-14">${prod.descripcion}</p>
-                        <h4 class="fz-18"><b>${precioFormateado}</b></h4>
-                        <div class="input-group mt-4 mb-2 selectorcantidad">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${index}, -1)">−</button>
-                            <input type="number" class="form-control text-center" id="cantidad${index}" value="0" min="0" readonly>
-                            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${index}, 1)">+</button>
-                        </div>
-                        </div>
-                        <div class="col-5">
-                        <img 
-                            src="${prod.imagen_producto ? `https://waped-app.onrender.com/assets/${prod.imagen_producto}` : './imagenes/no-disponible.png'}" 
-                            class="product-img img-fluid rounded" 
-                            alt="${prod.nombre}"
-                            style="cursor:pointer"
-                            onclick="ampliarImagen(this.src)"
-                        >
-                        </div>
-                    </div>
-                    </div>
-                `;
+                            <div class="h-100">
+                            <div class="row g-0 waped-card">
+                                <div class="col-7 pr-3">
+                                <h4 class="fz-20">${prod.nombre}</h4>
+                                <p class="fz-14">${prod.descripcion}</p>
+                                <h4 class="fz-18"><b>${precioFormateado}</b></h4>
+                                <div class="input-group mt-4 mb-2 selectorcantidad">
+                                    <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${prod.id}, -1)">−</button>
+                                    <input type="number" class="form-control text-center" id="cantidad${prod.id}" value="0" min="0" readonly>
+                                    <button class="btn btn-outline-secondary btn-sm" type="button" onclick="cambiarCantidad(${prod.id}, 1)">+</button>
+                                </div>
+                                </div>
+                                <div class="col-5">
+                                <img 
+                                    src="${prod.imagen_producto?.url || 'https://wapedapp.com/images/no-disponible.png'}"
+                                    class="product-img img-fluid rounded" 
+                                    alt="${prod.nombre}"
+                                    style="cursor:pointer"
+                                    onclick="ampliarImagen(this.src)"
+                                >
+                                </div>
+                            </div>
+                            </div>
+                        `;
 
 
             productosContainer.appendChild(prodDiv);
@@ -75,23 +70,28 @@ function cargarProductos(productos) {
 }
 
 function cargarChips(productos) {
+    productos = productos.sort((a, b) => {
+        if (a.orden == null && b.orden == null) return 0;
+        if (a.orden == null) return 1;  // a va después
+        if (b.orden == null) return -1; // b va después
+        return a.orden - b.orden;
+    });
+
     const chipsContainer = document.getElementById("chipsContainer");
-    const stickyHeader = document.getElementById("stickyHeader");
     chipsContainer.innerHTML = "";
+    // Obtener las categorias únicos del array
+    const categorias = getCategorias(productos)
 
-    // Obtener los tipos únicos del array
-    const tiposUnicos = [...new Set(productos.map(prod => prod.tipo))];
-
-    tiposUnicos.forEach((tipo) => {
+    categorias.forEach((categoria) => {
         const chip = document.createElement("button");
         chip.className = "btn btn-sm";
-        chip.innerText = tipo;
+        debugger
+        chip.innerText = categoria.nombre;
 
         chip.onclick = () => {
-            const target = document.getElementById(tipo.replace(/\s+/g, '-')); // mismo id que en cargarProductos
+            const target = document.getElementById(categoria.nombre.replace(/\s+/g, '-')); // mismo id que en cargarProductos
             if (target) {
-                const offset = stickyHeader?.offsetHeight || 0;
-                const top = target.getBoundingClientRect().top + window.scrollY - offset - 10;
+                const top = target.getBoundingClientRect().top + window.scrollY - 10;
                 window.scrollTo({ top, behavior: "smooth" });
             }
         };
@@ -131,7 +131,7 @@ function mostrarSeleccion() {
     let productosEnPedido = [];
     let total = 0;
     productos.forEach((prod, index) => {
-        const cantidad = parseInt(document.getElementById(`cantidad${index}`)?.value);
+        const cantidad = parseInt(document.getElementById(`cantidad${prod.id}`)?.value);
         if (cantidad > 0) {
             productosEnPedido.push(`- ${cantidad} x ${prod.nombre}`);
             total += prod.precio * cantidad;
@@ -170,7 +170,7 @@ function mostrarSeleccion() {
     modal.show();
 }
 
-async function enviarPedidoPorWhatsapp() {
+async function enviarPedidoPorWhatsapp(nroWhatsapp) {
     // === 1) Obtener datos del formulario ===
     const productosHtml = document.querySelector("#modalContenido p")?.innerText || "";
     const totalHtml = document.querySelector("#modalContenido p:nth-child(2)")?.innerText || "";
@@ -180,10 +180,16 @@ async function enviarPedidoPorWhatsapp() {
     const direccion = document.getElementById("direccion")?.value.trim() || "";
     const instrucciones = document.getElementById("instrucciones")?.value.trim() || "";
     const comentarios = document.getElementById("comentarios")?.value.trim() || "";
+    const nroWhatsappCliente = document.getElementById("nroWhatsappCliente")?.value.trim() || "";
 
     // === 2) Validaciones ===
     if (metodoEnvio === "Delivery" && !direccion) {
         alert("Por favor, ingresá una dirección para el delivery.");
+        return;
+    }
+
+    if (nroWhatsappCliente === "") {
+        alert("Por favor, ingresá tu número de Whatsapp.");
         return;
     }
 
@@ -203,7 +209,6 @@ async function enviarPedidoPorWhatsapp() {
     });
 
     // === 5) Construir JSON para backend ===
-    debugger
     const pedidoData = {
         descripcion: descripcionPedido.replaceAll('- ', '').replaceAll('%0A', ' '),
         total_a_pagar: totalLimpio,
@@ -211,15 +216,15 @@ async function enviarPedidoPorWhatsapp() {
         tipo_envio: metodoEnvio.toLowerCase(),
         direccion: direccion || null,
         instrucciones_de_envio: instrucciones || null,
-        comentarios: comentarios || null
+        comentarios: comentarios || null,
+        cliente: nroWhatsappCliente
     };
 
     // === 6) Guardar pedido en backend antes de abrir WhatsApp ===
     await guardarPedidoEnBackend(pedidoData);
 
-    // === 7) Abrir WhatsApp si todo salió bien ===
-    const numero = "5491122544073";
-    const url = `https://wa.me/${numero}?text=${mensajeWhatsApp}`;
+    // === 7) Abrir WhatsApp si todo salió bien ===";
+    const url = `https://wa.me/${nroWhatsapp}?text=${mensajeWhatsApp}`;
     window.open(url, "_blank");
 }
 
@@ -319,7 +324,6 @@ document.querySelectorAll('input[name="metodoPago"]').forEach(radio => {
     });
 });
 
-// Copiar alias al hacer clic
 function copiarAlias(input) {
     input.select();
     input.setSelectionRange(0, 99999); // Para móviles
@@ -329,3 +333,46 @@ function copiarAlias(input) {
     msg.style.display = "inline";
     setTimeout(() => (msg.style.display = "none"), 1500);
 }
+
+
+function getCategorias(productos) {
+    productos = productos.sort((a, b) => {
+        if (a.orden == null && b.orden == null) return 0;
+        if (a.orden == null) return 1;  // a va después
+        if (b.orden == null) return -1; // b va después
+        return a.orden - b.orden;
+    });
+
+    const categoriasConProductos = productos.reduce((acc, producto) => {
+        producto.categorias.forEach(cat => {
+            // buscar si ya existe la categoría
+            let categoria = acc.find(c => c.nombre === cat.Label);
+            if (!categoria) {
+                categoria = { nombre: cat.Label, productos: [] };
+                acc.push(categoria); // 👈 se agrega en el orden de aparición
+            }
+            categoria.productos.push(producto);
+        });
+        return acc;
+    }, []);
+
+
+    return Object.values(categoriasConProductos);
+}
+
+let lastScrollY = window.scrollY;
+const stickyHeader = document.getElementById("stickyHeader");
+
+window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // 👉 Scrolling hacia abajo → ocultar header
+        stickyHeader.classList.add("oculto");
+    } else {
+        // 👉 Scrolling hacia arriba → mostrar header
+        stickyHeader.classList.remove("oculto");
+    }
+
+    lastScrollY = currentScrollY;
+});

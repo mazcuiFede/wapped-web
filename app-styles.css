@@ -13,7 +13,8 @@ body {
     color: var(--color-texto);
 }
 
-button.btn {
+button.btn,
+.btn:first-child:active {
     color: var(--color-texto-boton);
     background-color: var(--color-fondo-boton);
 }
@@ -221,4 +222,18 @@ button.btn-carrito {
     max-height: 200px;
     opacity: 1;
     margin-top: 10px;
+}
+
+#stickyHeader {
+    transition: transform 0.3s ease-in-out;
+}
+
+#stickyHeader.oculto {
+    transform: translateY(-100%);
+    /* Se mueve hacia arriba y se oculta */
+}
+
+.btn.btn-success {
+    background-color: #198754;
+
 }
