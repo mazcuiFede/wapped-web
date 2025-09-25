@@ -90,6 +90,7 @@ button.btn-carrito {
 .logo-small {
     width: 150px !important;
     transition: all 0.3s ease;
+    border-radius: 50%;
 }
 
 .logo-normal {

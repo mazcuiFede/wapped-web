@@ -1,4 +1,3 @@
-// Aplicación principal refactorizada
 class App {
     constructor() {
         this.productManager = new ProductManager();
@@ -15,7 +14,7 @@ class App {
 
             const response = await ApiService.fetchRestaurantData();
             const restaurantData = response.data[0];
-
+            debugger
             this.productManager.setRestaurantData(restaurantData);
             this.productManager.renderProducts();
             this.productManager.renderChips();

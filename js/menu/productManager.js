@@ -9,6 +9,7 @@ class ProductManager {
         this.restaurantData = restaurantData;
         this.products = Utils.sortByOrder(restaurantData.menus);
         this.updateLogo();
+        this.updateBanner();
     }
 
     updateLogo() {
@@ -16,6 +17,13 @@ class ProductManager {
         if (logoElement && this.restaurantData?.logo?.url) {
             logoElement.src = this.restaurantData.logo.url;
             logoElement.alt = this.restaurantData.nombre || "Logo del Restaurante";
+        }
+    }
+
+    updateBanner() {
+        const banner = document.querySelector(".title-bg");
+        if (banner && this.restaurantData?.banner?.url) {
+            banner.style.backgroundImage = `url('${this.restaurantData?.banner?.url}')`;
         }
     }
 
