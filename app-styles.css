@@ -238,3 +238,7 @@ button.btn-carrito {
     background-color: #198754;
 
 }
+
+.hidden {
+    display: none;
+}

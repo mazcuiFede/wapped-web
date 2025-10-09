@@ -10,10 +10,37 @@ class ProductManager {
         this.products = Utils.sortByOrder(restaurantData.menus);
         this.updateLogo();
         this.updateBanner();
+        this.updateAlias();
+        this.updateDeliveryCost();
+        this.updateNroWhatsappRestaurant();
+
+        document.getElementById("stickyHeader").classList.remove("hidden"); // mostrar
+    }
+
+    updateAlias() {
+        const aliasInput = document.getElementById("aliasBancario");
+        if (aliasInput && this.restaurantData?.alias) {
+            aliasInput.value = this.restaurantData.alias;
+        }
+    }
+
+    updateDeliveryCost() {
+        const costoEnvio = document.getElementById("costoEnvio");
+        if (costoEnvio) {
+            costoEnvio.value = this.restaurantData.costoEnvio ?? 0
+        }
+    }
+
+    updateNroWhatsappRestaurant() {
+        const nroWhatsappRestaurant = document.getElementById("nroWhatsappRestaurant");
+        if (nroWhatsappRestaurant) {
+            nroWhatsappRestaurant.value = this.restaurantData.numeroWhatsapp ?? 0
+        }
     }
 
     updateLogo() {
         const logoElement = document.getElementById("restaurantLogo");
+
         if (logoElement && this.restaurantData?.logo?.url) {
             logoElement.src = this.restaurantData.logo.url;
             logoElement.alt = this.restaurantData.nombre || "Logo del Restaurante";

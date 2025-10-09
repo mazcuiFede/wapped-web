@@ -8,6 +8,8 @@ class Utils {
     }
 
     static sortByOrder(items) {
+        if (!items) return [];
+
         return items.sort((a, b) => {
             if (a.orden == null && b.orden == null) return 0;
             if (a.orden == null) return 1;
