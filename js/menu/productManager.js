@@ -27,7 +27,7 @@ class ProductManager {
     updateDeliveryCost() {
         const costoEnvio = document.getElementById("costoEnvio");
         if (costoEnvio) {
-            costoEnvio.value = this.restaurantData.costoEnvio ?? 0
+            costoEnvio.innerHTML = new Intl.NumberFormat("es-AR").format(this.restaurantData.costoEnvio ?? 0);
         }
     }
 

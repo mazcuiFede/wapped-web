@@ -49,7 +49,7 @@ class CartManager {
 
         modalContenido.innerHTML = `
             <p><strong>Productos en el pedido:</strong> ${productosEnPedido.map(x => "<br />" + x.toString()).join()}</p>
-            <p><strong>Total:</strong> $ ${total.toLocaleString()}</p>
+            <p style="margin-bottom: 0px"><strong>Total:</strong> $ ${new Intl.NumberFormat("es-AR").format(total)}</p>
         `;
 
         btnWhatsapp.style.display = "inline-block";
@@ -59,35 +59,52 @@ class CartManager {
     }
 
     async sendOrderViaWhatsApp() {
-        const formData = this.extractFormData();
+        const btnWhatsapp = document.getElementById("btnWhatsapp");
+        const originalContent = btnWhatsapp.innerHTML;
 
-        if (!this.validateFormData(formData)) {
-            return;
+        // Mostrar spinner y deshabilitar botón
+        btnWhatsapp.disabled = true;
+        btnWhatsapp.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Enviando...';
+
+        try {
+            const formData = this.extractFormData();
+            debugger
+
+            if (!this.validateFormData(formData)) {
+                return;
+            }
+
+            const { productosEnPedido, total } = this.getCartItems();
+            const orderData = this.buildOrderData(productosEnPedido, total, formData);
+            const whatsappMessage = this.buildWhatsAppMessage(orderData);
+
+            const url = `https://wa.me/${formData.nroWhatsappRestaurant}?text=${whatsappMessage}`;
+
+            window.open(url, "_blank");
+            ApiService.saveOrder(orderData).catch(err => {
+                console.error("Error al guardar la orden:", err);
+            });
+
+
+        } finally {
+            // Restaurar estado original del botón
+            btnWhatsapp.disabled = false;
+            btnWhatsapp.innerHTML = originalContent;
         }
-
-        const { productosEnPedido, total } = this.getCartItems();
-        const orderData = this.buildOrderData(productosEnPedido, total, formData);
-        const whatsappMessage = this.buildWhatsAppMessage(orderData);
-
-        await ApiService.saveOrder(orderData);
-
-        const url = `https://wa.me/${CONFIG.WHATSAPP.NUMBER}?text=${whatsappMessage}`;
-        window.open(url, "_blank");
     }
 
     extractFormData() {
-        const productosHtml = document.querySelector("#modalContenido p")?.innerText || "";
-        const totalHtml = document.querySelector("#modalContenido p:nth-child(2)")?.innerText || "";
-
         return {
-            productosHtml,
-            totalHtml,
+            productosHtml: document.querySelector("#modalContenido p")?.innerText || "",
+            costoEnvio: document.querySelector("#costoEnvio")?.innerText || "",
+            totalHtml: document.querySelector("#modalContenido p:nth-child(2)")?.innerText || "",
             metodoPago: document.querySelector('input[name="metodoPago"]:checked')?.value || "",
             metodoEnvio: document.querySelector('input[name="metodoEnvio"]:checked')?.value || "",
             direccion: document.getElementById("direccion")?.value.trim() || "",
             instrucciones: document.getElementById("instrucciones")?.value.trim() || "",
             comentarios: document.getElementById("comentarios")?.value.trim() || "",
-            nroWhatsappCliente: document.getElementById("nroWhatsappCliente")?.value.trim() || ""
+            nroWhatsappCliente: document.getElementById("nroWhatsappCliente")?.value.trim() || "",
+            nroWhatsappRestaurant: document.querySelector("#nroWhatsappRestaurant")?.value || ""
         };
     }
 
@@ -134,12 +151,13 @@ class CartManager {
     }
 
     calculateTotal(totalHtml, metodoEnvio) {
+        debugger
         if (!totalHtml) return 0;
         let total = parseFloat(
             totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim()
         );
         if (metodoEnvio === "Delivery") {
-            total += CONFIG.DELIVERY.COST;
+            total += parseInt(document.querySelector("#costoEnvio")?.innerText) || 0;
         }
         return total;
     }
@@ -151,7 +169,7 @@ class CartManager {
             mensaje += `%0A${orderData.descripcion}`;
         }
         if (orderData.total_a_pagar) {
-            mensaje += `%0A%0A*Total a pagar: ${orderData.total_a_pagar.toLocaleString()}*`;
+            mensaje += `%0A%0A*Total a pagar: $ ${new Intl.NumberFormat("es-AR").format(orderData.total_a_pagar)}*`;
         }
 
         mensaje += `%0A%0AForma de pago: ${orderData.forma_de_pago}`;

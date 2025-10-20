@@ -1,0 +1,12 @@
+:root {
+    --color-fondo: #F6F4ED;
+    --color-texto: rgb(22, 22, 22);
+    --color-fondo-boton: #4F4E4C;
+    --bs-btn-hover-bg: #4F4E4C;
+    --bs-btn-active-bg: #4F4E4C;
+    --color-texto-boton: white;
+    --bs-btn-hover-color: white;
+    --bs-btn-active-color: white;
+    --color-fondo-boton-carrito: #F9014F;
+    --color-texto-boton-carrito: white;
+}

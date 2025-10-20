@@ -1,10 +1,7 @@
 // Utilidades comunes
 class Utils {
     static formatPrice(price) {
-        return new Intl.NumberFormat("es-AR", {
-            style: "currency",
-            currency: "ARS"
-        }).format(price);
+        return new Intl.NumberFormat("es-AR").format(price);
     }
 
     static sortByOrder(items) {

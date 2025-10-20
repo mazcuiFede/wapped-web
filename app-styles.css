@@ -213,7 +213,7 @@ button.btn-carrito {
 /* Estado inicial: oculto */
 #campoAliasBancario {
     max-height: 0;
-    opacity: 0;
+    display: none;
     overflow: hidden;
     transition: max-height 0.3s ease, opacity 0.3s ease;
 }
@@ -221,8 +221,7 @@ button.btn-carrito {
 /* Estado visible con animación */
 #campoAliasBancario.mostrar {
     max-height: 200px;
-    opacity: 1;
-    margin-top: 10px;
+    display: block;
 }
 
 #stickyHeader {
@@ -241,4 +240,198 @@ button.btn-carrito {
 
 .hidden {
     display: none;
+}
+
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.title-bg {
+    background-image: url(./imagenes/header-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 -12px;
+    text-align: center;
+}
+
+/* Estilos personalizados para el modal de pedido */
+#pedidoModal .modal-content {
+    background-color: var(--color-fondo);
+    border: 3px solid var(--color-fondo-boton);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(79, 78, 76, 0.3);
+}
+
+#pedidoModal .modal-header {
+    background: linear-gradient(135deg, var(--color-fondo-boton) 0%, #3a3938 100%);
+    color: white;
+    border-radius: 17px 17px 0 0;
+    padding: 1.5rem;
+    border-bottom: 3px solid var(--color-fondo-boton-carrito);
+}
+
+#pedidoModal .modal-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#pedidoModal .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+#pedidoModal .btn-close:hover {
+    opacity: 1;
+}
+
+#pedidoModal .modal-body {
+    padding: 2rem;
+    background-color: var(--color-fondo);
+}
+
+#pedidoModal .modal-body h5 {
+    color: var(--color-fondo-boton);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(79, 78, 76, 0.2);
+}
+
+#pedidoModal .modal-body h5:first-child {
+    margin-top: 0;
+}
+
+#pedidoModal .form-check {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0.8rem 2.2rem 0.8rem 3.2rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+#pedidoModal .form-check:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+}
+
+#pedidoModal .form-check-input:checked~.form-check-label {
+    font-weight: 600;
+    color: var(--color-fondo-boton-carrito);
+}
+
+#pedidoModal .form-check-input:checked {
+    background-color: var(--color-fondo-boton-carrito);
+    border-color: var(--color-fondo-boton-carrito);
+}
+
+#pedidoModal .form-control,
+#pedidoModal textarea {
+    border: 2px solid rgba(79, 78, 76, 0.3);
+    border-radius: 10px;
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#pedidoModal .form-control:focus,
+#pedidoModal textarea:focus {
+    border-color: var(--color-fondo-boton-carrito);
+    box-shadow: 0 0 0 0.25rem rgba(249, 1, 79, 0.15);
+    background-color: white;
+}
+
+#pedidoModal .modal-footer {
+    background-color: var(--color-fondo);
+    border-top: 2px solid rgba(79, 78, 76, 0.2);
+    padding: 1.5rem;
+    border-radius: 0 0 17px 17px;
+}
+
+#pedidoModal #btnWhatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border: none;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+}
+
+#pedidoModal #btnWhatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+#pedidoModal .btn-secondary {
+    background-color: var(--color-fondo-boton);
+    border: none;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+}
+
+#pedidoModal hr {
+    border-top: 2px solid rgba(79, 78, 76, 0.2);
+    margin: 2rem 0;
+}
+
+#pedidoModal #modalContenido {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 2px solid rgba(79, 78, 76, 0.1);
+}
+
+#pedidoModal #campoAliasBancario {
+    background-color: rgba(249, 1, 79, 0.05);
+    border-radius: 12px;
+    border-left: 4px solid var(--color-fondo-boton-carrito);
+    margin-top: 1rem;
+}
+
+#pedidoModal #aliasBancario {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-fondo-boton);
+    cursor: pointer;
+    background-color: white;
+}
+
+#pedidoModal #aliasBancario:hover {
+    background-color: #f8f9fa;
+}
+
+#pedidoModal #mensajeCopiado {
+    background-color: rgba(37, 211, 102, 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Ícono de información con tooltip */
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    color: var(--color-fondo-boton-carrito);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.info-icon:hover {
+    color: var(--color-fondo-boton);
+    transform: scale(1.1);
+}
+
+.info-icon svg {
+    vertical-align: middle;
 }
