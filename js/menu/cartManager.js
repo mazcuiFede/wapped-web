@@ -169,7 +169,7 @@ class CartManager {
             mensaje += `%0A${orderData.descripcion}`;
         }
         if (orderData.total_a_pagar) {
-            mensaje += `%0A%0A*Total a pagar: $ ${new Intl.NumberFormat("es-AR").format(orderData.total_a_pagar)}*`;
+            mensaje += `%0A%0A*Total a pagar: $ ${orderData.total_a_pagar}*`;
         }
 
         mensaje += `%0A%0AForma de pago: ${orderData.forma_de_pago}`;
