@@ -68,7 +68,6 @@ class CartManager {
 
         try {
             const formData = this.extractFormData();
-            debugger
 
             if (!this.validateFormData(formData)) {
                 return;
@@ -151,10 +150,9 @@ class CartManager {
     }
 
     calculateTotal(totalHtml, metodoEnvio) {
-        debugger
         if (!totalHtml) return 0;
         let total = parseFloat(
-            totalHtml.replace("Total:", "").replace("$", "").replace(",", "").trim()
+            totalHtml.replace("Total:", "").replace("$", "").replace(".", "").trim()
         );
         if (metodoEnvio === "Delivery") {
             total += parseInt(document.querySelector("#costoEnvio")?.innerText) || 0;
@@ -169,7 +167,7 @@ class CartManager {
             mensaje += `%0A${orderData.descripcion}`;
         }
         if (orderData.total_a_pagar) {
-            mensaje += `%0A%0A*Total a pagar: $ ${orderData.total_a_pagar}*`;
+            mensaje += `%0A%0A*Total a pagar: $ ${new Intl.NumberFormat("es-AR").format(orderData.total_a_pagar)}*`;
         }
 
         mensaje += `%0A%0AForma de pago: ${orderData.forma_de_pago}`;
