@@ -126,7 +126,7 @@ class CartManager {
         const totalLimpio = this.calculateTotal(formData.totalHtml, formData.metodoEnvio);
 
         return {
-            descripcion: descripcionPedido.replaceAll('- ', '').replaceAll('%0A', ' '),
+            descripcion: descripcionPedido.replaceAll('- ', ''),
             total_a_pagar: totalLimpio,
             forma_de_pago: formData.metodoPago.toLowerCase(),
             tipo_envio: formData.metodoEnvio.toLowerCase(),
@@ -164,24 +164,24 @@ class CartManager {
         let mensaje = `Hola! Quisiera hacer el siguiente pedido:%0A`;
 
         if (orderData.descripcion) {
-            mensaje += `%0A${orderData.descripcion}`;
+            mensaje += `%0A*Productos:*%0A${orderData.descripcion}`;
         }
         if (orderData.total_a_pagar) {
-            mensaje += `%0A%0A*Total a pagar: $ ${new Intl.NumberFormat("es-AR").format(orderData.total_a_pagar)}*`;
+            mensaje += `%0A%0A*Total a pagar:* $ ${new Intl.NumberFormat("es-AR").format(orderData.total_a_pagar)}`;
         }
 
-        mensaje += `%0A%0AForma de pago: ${orderData.forma_de_pago}`;
-        mensaje += `%0ATipo de envío: ${orderData.tipo_envio}`;
+        mensaje += `%0A%0A*Forma de pago:* ${orderData.forma_de_pago}`;
+        mensaje += `%0A*Tipo de envío:* ${orderData.tipo_envio}`;
 
         if (orderData.tipo_envio === "delivery") {
-            mensaje += `%0ADirección: ${orderData.direccion}`;
+            mensaje += `%0A*Dirección:* ${orderData.direccion}`;
             if (orderData.instrucciones_de_envio) {
-                mensaje += `%0AInstrucciones: ${orderData.instrucciones_de_envio}`;
+                mensaje += `%0A*Instrucciones:* ${orderData.instrucciones_de_envio}`;
             }
         }
 
         if (orderData.comentarios) {
-            mensaje += `%0AComentario: ${orderData.comentarios}`;
+            mensaje += `%0A*Comentario:* ${orderData.comentarios}`;
         }
 
         return mensaje;
