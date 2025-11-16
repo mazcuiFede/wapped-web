@@ -245,13 +245,8 @@
 			try {
 				// Aquí deberías obtener el token de alguna manera
 				// Por ahora, lo dejamos como placeholder
-				const token = 'TU_TOKEN_AQUI';
-
 				const response = await fetch('https://waped-express-api.onrender.com/restaurants', {
 					method: 'POST',
-					headers: {
-						'Authorization': `Bearer ${token}`
-					},
 					body: formData
 				});
 
