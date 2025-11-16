@@ -238,12 +238,9 @@
 			const formData = new FormData();
 			formData.append('nombre', document.getElementById('nombre').value);
 			formData.append('email', document.getElementById('email').value);
-			formData.append('alias', document.getElementById('alias').value);
 			formData.append('direccion', document.getElementById('direccion').value);
 			formData.append('numeroWhatsapp', document.getElementById('numeroWhatsapp').value);
-			formData.append('costoEnvio', document.getElementById('costoEnvio').value);
 			formData.append('logo', document.getElementById('logo').files[0]);
-			formData.append('banner', document.getElementById('banner').files[0]);
 
 			try {
 				// Aquí deberías obtener el token de alguna manera
