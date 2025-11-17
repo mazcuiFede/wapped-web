@@ -210,11 +210,6 @@
 				<div class="file-info">Donde van a llegar tus pedidos</div>
 			</div>
 
-			<div class="form-group">
-				<label for="logo">Logo del Restaurante <span class="required">*</span></label>
-				<input type="file" id="logo" name="logo" accept="image/*" required>
-				<div class="file-info">Formatos aceptados: JPG, PNG. Tamaño recomendado: 500x500px</div>
-			</div>
 
 			<button type="submit" class="submit-btn" id="submitBtn">Registrar Restaurante</button>
 		</form>
@@ -240,7 +235,6 @@
 			formData.append('email', document.getElementById('email').value);
 			formData.append('direccion', document.getElementById('direccion').value);
 			formData.append('numeroWhatsapp', document.getElementById('numeroWhatsapp').value);
-			formData.append('logo', document.getElementById('logo').files[0]);
 
 			try {
 				// Aquí deberías obtener el token de alguna manera
