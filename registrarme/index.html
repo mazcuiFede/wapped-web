@@ -243,11 +243,11 @@
 					method: 'POST',
 					body: formData
 				});
-
+				debugger
 				if (response.ok) {
 					const data = await response.json();
 					messageDiv.className = 'message success';
-					messageDiv.textContent = 'Restaurante registrado exitosamente! Un operador te contacará a la brevedad.';
+					messageDiv.innerHTML = 'Restaurante registrado exitosamente! Un operador te contactará a la brevedad.<br />El ID de tu restaurante es: ' + data.id;
 					messageDiv.style.display = 'block';
 
 					// Limpiar formulario
